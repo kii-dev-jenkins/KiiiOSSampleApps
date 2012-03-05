@@ -1,0 +1,314 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		08A1C6B1150466DC00B875B4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08A1C6B0150466DC00B875B4 /* UIKit.framework */; };
+		08A1C6B3150466DC00B875B4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08A1C6B2150466DC00B875B4 /* Foundation.framework */; };
+		08A1C6B5150466DC00B875B4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08A1C6B4150466DC00B875B4 /* CoreGraphics.framework */; };
+		08A1C6BB150466DC00B875B4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 08A1C6B9150466DC00B875B4 /* InfoPlist.strings */; };
+		08A1C6BD150466DC00B875B4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A1C6BC150466DC00B875B4 /* main.m */; };
+		08A1C6C1150466DC00B875B4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A1C6C0150466DC00B875B4 /* AppDelegate.m */; };
+		08A1C6C4150466DC00B875B4 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A1C6C3150466DC00B875B4 /* FirstViewController.m */; };
+		08A1C6C6150466DC00B875B4 /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 08A1C6C5150466DC00B875B4 /* first.png */; };
+		08A1C6C8150466DC00B875B4 /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08A1C6C7150466DC00B875B4 /* first@2x.png */; };
+		08A1C6CB150466DC00B875B4 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A1C6CA150466DC00B875B4 /* SecondViewController.m */; };
+		08A1C6CD150466DC00B875B4 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 08A1C6CC150466DC00B875B4 /* second.png */; };
+		08A1C6CF150466DC00B875B4 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08A1C6CE150466DC00B875B4 /* second@2x.png */; };
+		08A1C6D2150466DC00B875B4 /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08A1C6D0150466DC00B875B4 /* FirstViewController.xib */; };
+		08A1C6D5150466DC00B875B4 /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08A1C6D3150466DC00B875B4 /* SecondViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		08A1C6AC150466DC00B875B4 /* KiiStorageSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KiiStorageSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		08A1C6B0150466DC00B875B4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		08A1C6B2150466DC00B875B4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		08A1C6B4150466DC00B875B4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		08A1C6B8150466DC00B875B4 /* KiiStorageSample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KiiStorageSample-Info.plist"; sourceTree = "<group>"; };
+		08A1C6BA150466DC00B875B4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		08A1C6BC150466DC00B875B4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		08A1C6BE150466DC00B875B4 /* KiiStorageSample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KiiStorageSample-Prefix.pch"; sourceTree = "<group>"; };
+		08A1C6BF150466DC00B875B4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		08A1C6C0150466DC00B875B4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		08A1C6C2150466DC00B875B4 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		08A1C6C3150466DC00B875B4 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		08A1C6C5150466DC00B875B4 /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
+		08A1C6C7150466DC00B875B4 /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
+		08A1C6C9150466DC00B875B4 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		08A1C6CA150466DC00B875B4 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		08A1C6CC150466DC00B875B4 /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
+		08A1C6CE150466DC00B875B4 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
+		08A1C6D1150466DC00B875B4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FirstViewController.xib; sourceTree = "<group>"; };
+		08A1C6D4150466DC00B875B4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SecondViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		08A1C6A9150466DC00B875B4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				08A1C6B1150466DC00B875B4 /* UIKit.framework in Frameworks */,
+				08A1C6B3150466DC00B875B4 /* Foundation.framework in Frameworks */,
+				08A1C6B5150466DC00B875B4 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		08A1C6A1150466DC00B875B4 = {
+			isa = PBXGroup;
+			children = (
+				08A1C6B6150466DC00B875B4 /* KiiStorageSample */,
+				08A1C6AF150466DC00B875B4 /* Frameworks */,
+				08A1C6AD150466DC00B875B4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		08A1C6AD150466DC00B875B4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				08A1C6AC150466DC00B875B4 /* KiiStorageSample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		08A1C6AF150466DC00B875B4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				08A1C6B0150466DC00B875B4 /* UIKit.framework */,
+				08A1C6B2150466DC00B875B4 /* Foundation.framework */,
+				08A1C6B4150466DC00B875B4 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		08A1C6B6150466DC00B875B4 /* KiiStorageSample */ = {
+			isa = PBXGroup;
+			children = (
+				08A1C6BF150466DC00B875B4 /* AppDelegate.h */,
+				08A1C6C0150466DC00B875B4 /* AppDelegate.m */,
+				08A1C6C2150466DC00B875B4 /* FirstViewController.h */,
+				08A1C6C3150466DC00B875B4 /* FirstViewController.m */,
+				08A1C6C5150466DC00B875B4 /* first.png */,
+				08A1C6C7150466DC00B875B4 /* first@2x.png */,
+				08A1C6C9150466DC00B875B4 /* SecondViewController.h */,
+				08A1C6CA150466DC00B875B4 /* SecondViewController.m */,
+				08A1C6CC150466DC00B875B4 /* second.png */,
+				08A1C6CE150466DC00B875B4 /* second@2x.png */,
+				08A1C6D0150466DC00B875B4 /* FirstViewController.xib */,
+				08A1C6D3150466DC00B875B4 /* SecondViewController.xib */,
+				08A1C6B7150466DC00B875B4 /* Supporting Files */,
+			);
+			path = KiiStorageSample;
+			sourceTree = "<group>";
+		};
+		08A1C6B7150466DC00B875B4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				08A1C6B8150466DC00B875B4 /* KiiStorageSample-Info.plist */,
+				08A1C6B9150466DC00B875B4 /* InfoPlist.strings */,
+				08A1C6BC150466DC00B875B4 /* main.m */,
+				08A1C6BE150466DC00B875B4 /* KiiStorageSample-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		08A1C6AB150466DC00B875B4 /* KiiStorageSample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 08A1C6D8150466DC00B875B4 /* Build configuration list for PBXNativeTarget "KiiStorageSample" */;
+			buildPhases = (
+				08A1C6A8150466DC00B875B4 /* Sources */,
+				08A1C6A9150466DC00B875B4 /* Frameworks */,
+				08A1C6AA150466DC00B875B4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KiiStorageSample;
+			productName = KiiStorageSample;
+			productReference = 08A1C6AC150466DC00B875B4 /* KiiStorageSample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		08A1C6A3150466DC00B875B4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "Chris Beauchamp";
+			};
+			buildConfigurationList = 08A1C6A6150466DC00B875B4 /* Build configuration list for PBXProject "KiiStorageSample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 08A1C6A1150466DC00B875B4;
+			productRefGroup = 08A1C6AD150466DC00B875B4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				08A1C6AB150466DC00B875B4 /* KiiStorageSample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		08A1C6AA150466DC00B875B4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				08A1C6BB150466DC00B875B4 /* InfoPlist.strings in Resources */,
+				08A1C6C6150466DC00B875B4 /* first.png in Resources */,
+				08A1C6C8150466DC00B875B4 /* first@2x.png in Resources */,
+				08A1C6CD150466DC00B875B4 /* second.png in Resources */,
+				08A1C6CF150466DC00B875B4 /* second@2x.png in Resources */,
+				08A1C6D2150466DC00B875B4 /* FirstViewController.xib in Resources */,
+				08A1C6D5150466DC00B875B4 /* SecondViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		08A1C6A8150466DC00B875B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				08A1C6BD150466DC00B875B4 /* main.m in Sources */,
+				08A1C6C1150466DC00B875B4 /* AppDelegate.m in Sources */,
+				08A1C6C4150466DC00B875B4 /* FirstViewController.m in Sources */,
+				08A1C6CB150466DC00B875B4 /* SecondViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		08A1C6B9150466DC00B875B4 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				08A1C6BA150466DC00B875B4 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		08A1C6D0150466DC00B875B4 /* FirstViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				08A1C6D1150466DC00B875B4 /* en */,
+			);
+			name = FirstViewController.xib;
+			sourceTree = "<group>";
+		};
+		08A1C6D3150466DC00B875B4 /* SecondViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				08A1C6D4150466DC00B875B4 /* en */,
+			);
+			name = SecondViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		08A1C6D6150466DC00B875B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		08A1C6D7150466DC00B875B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		08A1C6D9150466DC00B875B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KiiStorageSample/KiiStorageSample-Prefix.pch";
+				INFOPLIST_FILE = "KiiStorageSample/KiiStorageSample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		08A1C6DA150466DC00B875B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KiiStorageSample/KiiStorageSample-Prefix.pch";
+				INFOPLIST_FILE = "KiiStorageSample/KiiStorageSample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		08A1C6A6150466DC00B875B4 /* Build configuration list for PBXProject "KiiStorageSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				08A1C6D6150466DC00B875B4 /* Debug */,
+				08A1C6D7150466DC00B875B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		08A1C6D8150466DC00B875B4 /* Build configuration list for PBXNativeTarget "KiiStorageSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				08A1C6D9150466DC00B875B4 /* Debug */,
+				08A1C6DA150466DC00B875B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 08A1C6A3150466DC00B875B4 /* Project object */;
+}
