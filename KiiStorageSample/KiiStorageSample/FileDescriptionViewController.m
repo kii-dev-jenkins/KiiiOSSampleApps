@@ -30,15 +30,22 @@
 
     [CBLoader hideLoader];
     
-    if(err == nil) {
+    NSLog(@"Got file body: %@ atPath: %@ withError: %@", file, atPath, err);
+    
+//    if(err == nil) {
         
         // put the body in the text field
-        NSString *body = [NSString stringWithContentsOfFile:atPath encoding:NSUTF8StringEncoding error:nil];
-        [mDataView setText:body];
-        
-    } else {
+    NSError *ferr = nil;
+    NSString *body = [NSString stringWithContentsOfFile:atPath encoding:NSUTF8StringEncoding error:&ferr];
+    [mDataView setText:body];
+    
+    if(ferr != nil) {
         [mDataView setText:@"Error retrieving note!"];
     }
+        
+//    } else {
+//        [mDataView setText:@"Error retrieving note!"];
+//    }
     
 }
 
