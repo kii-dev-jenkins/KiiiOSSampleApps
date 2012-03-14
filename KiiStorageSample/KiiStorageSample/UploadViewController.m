@@ -9,25 +9,31 @@
 #import "UploadViewController.h"
 
 #import "CBToast.h"
+#import "CBLoader.h"
+
+#define kDefaultText    @"Enter text here"
 
 @implementation UploadViewController
 
-@synthesize mSegment, mProgress;
+@synthesize mTitleField, mBodyField;
+@synthesize mNavigationBar;
 
-- (void) progressUpdated:(KiiFile*)file withValue:(NSNumber*)value {
-    CGFloat percentage = [value floatValue];
-    [mProgress setProgress:percentage];
-
-    NSLog(@"Upload progress: %lf", percentage);
+#pragma mark - IBActions
+- (IBAction) doneEditing:(id)sender {
+    [mBodyField resignFirstResponder];
 }
 
 - (void) uploadComplete:(KiiFile*)file withError:(NSError*)error {
     
     NSLog(@"Upload complete with error %@", error);
     
-    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Success" message:@"The upload completed. Check the log to see if there were any errors." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-    [av show];
-    [av release];
+    [CBLoader hideLoader];
+    
+    if(error == nil) {
+        [CBToast showToast:@"Note uploaded!" withDuration:TOAST_LONG];
+    } else {
+        [CBToast showToast:@"Upload failed!" withDuration:TOAST_LONG];
+    }
     
     [file describe];
 }
@@ -36,37 +42,32 @@
     
     if(![Kii loggedIn]) {
         [CBToast showToast:@"User is not logged in" withDuration:TOAST_LONG];
-        return;
-    }
-
-    // get the desired file size
-    int option = [mSegment selectedSegmentIndex];
-    int size = 0;
-    NSString *fileName = @"";
-    switch (option) {
-        case 0:
-            size = 10 * 1024;
-            fileName = @"10kb";
-            break;
-        case 1:
-            size = 1024 * 1024;
-            fileName = @"1mb";
-            break;            
-        case 2:
-            size = 10 * 1024 * 1024;
-            fileName = @"10mb";
-            break;            
-        default:
-            break;
-    }
-    
-    // get the file path
-    NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:@"zip"];
-    
-    NSLog(@"Using file: %@", path);
+    } else if([[mTitleField text] length] == 0) {
+        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Enter a title for your note!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [av show];
+        [av release];
+    } else if([[mBodyField text] isEqualToString:kDefaultText]) {
+        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Enter some text for your note!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [av show];
+        [av release];
+    } else {
+        [CBLoader showLoader:@"Uploading note..."];
         
-    KiiFile *f = [KiiFile fileWithLocalPath:path];
-    [f updateFile:self withCallback:@selector(uploadComplete:withError:)];
+        // get the file path
+        NSString *fileName = [NSString stringWithFormat:@"%@.txt", [mTitleField text]];
+        
+        NSURL *documentPath = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+        documentPath = [documentPath URLByAppendingPathComponent:fileName];
+        
+        NSData *data = [[mBodyField text] dataUsingEncoding:NSUTF8StringEncoding];
+        [data writeToFile:[documentPath path] atomically:YES];
+        
+        NSLog(@"Using file: %@ with content: %@", [documentPath path], [mBodyField text]);
+        
+        KiiFile *f = [KiiFile fileWithLocalPath:[documentPath path]];
+        [f updateFile:self withCallback:@selector(uploadComplete:withError:)];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -75,13 +76,53 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+- (void) viewDidLoad {
+    
+    [super viewDidLoad];
+    
+    defaultBodyFrame = mBodyField.frame;
+    
+    mDoneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneEditing:)];
+
+    [mBodyField setText:kDefaultText];
+
+}
+
 #pragma mark - View lifecycle
 - (void) dealloc {
     
-    [mSegment release];
-    [mProgress release];
+    [mTitleField release];
+    [mBodyField release];
     
     [super dealloc];
 }
 
+#pragma mark - UITextViewDelegate
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView {       
+    [mNavigationBar.topItem setRightBarButtonItem:mDoneButton animated:TRUE];
+    mBodyField.frame = CGRectMake(0, 44, 320, 200);
+    
+    if([[mBodyField text] isEqualToString:kDefaultText]) {
+        [mBodyField setText:@""];
+    }
+    
+    return YES;
+}
+
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView {
+    [mNavigationBar.topItem setRightBarButtonItem:nil animated:TRUE];
+    mBodyField.frame = defaultBodyFrame;
+
+    if([[mBodyField text] isEqualToString:@""]) {
+        [mBodyField setText:kDefaultText];
+    }
+
+    return YES;
+}
+
+#pragma mark - UITextFieldDelegate
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
 @end

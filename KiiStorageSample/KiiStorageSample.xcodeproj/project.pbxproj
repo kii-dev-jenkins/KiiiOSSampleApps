@@ -11,7 +11,7 @@
 		08354EFA1504724200EA6184 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08354EF91504724200EA6184 /* CFNetwork.framework */; };
 		08354EFC1504724600EA6184 /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 08354EFB1504724600EA6184 /* libz.1.1.3.dylib */; };
 		08354EFE1504726400EA6184 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08354EFD1504726400EA6184 /* SystemConfiguration.framework */; };
-		08528F441510560E00A86357 /* KiiSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08528F431510560E00A86357 /* KiiSDK.framework */; };
+		089B64A2151088D200F30190 /* KiiSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 089B64A1151088D200F30190 /* KiiSDK.framework */; };
 		08A1C6B1150466DC00B875B4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08A1C6B0150466DC00B875B4 /* UIKit.framework */; };
 		08A1C6B3150466DC00B875B4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08A1C6B2150466DC00B875B4 /* Foundation.framework */; };
 		08A1C6B5150466DC00B875B4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08A1C6B4150466DC00B875B4 /* CoreGraphics.framework */; };
@@ -40,7 +40,7 @@
 		08354EF91504724200EA6184 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		08354EFB1504724600EA6184 /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
 		08354EFD1504726400EA6184 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		08528F431510560E00A86357 /* KiiSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KiiSDK.framework; sourceTree = "<group>"; };
+		089B64A1151088D200F30190 /* KiiSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiiSDK.framework; path = "../../KiiSDK-Private/Product/KiiSDK.framework"; sourceTree = "<group>"; };
 		08A1C6AC150466DC00B875B4 /* KiiStorageSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KiiStorageSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08A1C6B0150466DC00B875B4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		08A1C6B2150466DC00B875B4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -81,12 +81,12 @@
 			files = (
 				08354EFC1504724600EA6184 /* libz.1.1.3.dylib in Frameworks */,
 				08354EFA1504724200EA6184 /* CFNetwork.framework in Frameworks */,
+				089B64A2151088D200F30190 /* KiiSDK.framework in Frameworks */,
 				08354EF81504723500EA6184 /* MobileCoreServices.framework in Frameworks */,
 				08A1C6B1150466DC00B875B4 /* UIKit.framework in Frameworks */,
 				08354EFE1504726400EA6184 /* SystemConfiguration.framework in Frameworks */,
 				08A1C6B3150466DC00B875B4 /* Foundation.framework in Frameworks */,
 				08A1C6B5150466DC00B875B4 /* CoreGraphics.framework in Frameworks */,
-				08528F441510560E00A86357 /* KiiSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,7 +113,7 @@
 		08A1C6AF150466DC00B875B4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				08528F431510560E00A86357 /* KiiSDK.framework */,
+				089B64A1151088D200F30190 /* KiiSDK.framework */,
 				08354EFB1504724600EA6184 /* libz.1.1.3.dylib */,
 				08354EFD1504726400EA6184 /* SystemConfiguration.framework */,
 				08354EF91504724200EA6184 /* CFNetwork.framework */,
@@ -336,6 +336,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../../KiiSDK-Private/Product\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KiiStorageSample/KiiStorageSample-Prefix.pch";
@@ -352,6 +353,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../../KiiSDK-Private/Product\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KiiStorageSample/KiiStorageSample-Prefix.pch";

@@ -18,4 +18,6 @@
 
 @property (nonatomic, retain) IBOutlet UITableView *mTableView;
 
+- (IBAction) switchSource:(id)sender;
+
 @end

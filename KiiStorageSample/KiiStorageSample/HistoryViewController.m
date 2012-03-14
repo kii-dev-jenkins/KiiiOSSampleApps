@@ -10,11 +10,28 @@
 
 #import <KiiSDK/Kii.h>
 #import "CBLoader.h"
+#import "CBToast.h"
 #import "FileDescriptionViewController.h"
 
 @implementation HistoryViewController
 
 @synthesize mTableView;
+
+- (IBAction) switchSource:(id)sender {
+    
+    UISegmentedControl *control = (UISegmentedControl*)sender;
+    
+    if([control selectedSegmentIndex] == 0) {
+        // load the 'live' list
+        [CBLoader showLoader:@"Loading file list"];
+        [KiiFile listAllFiles:self withCallback:@selector(fileListingComplete:withError:)];
+    } else {
+        // load the 'trash' list
+        [CBLoader showLoader:@"Loading trash list"];
+        [KiiFile listTrash:self withCallback:@selector(fileListingComplete:withError:)];
+    }
+    
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -34,11 +51,30 @@
 
 }
 
+- (void) doneEmptying:(KiiError*)error {
+    
+    [CBLoader hideLoader];
+
+    if(error == nil) {
+        
+        [CBToast showToast:@"Trash emptied!" withDuration:TOAST_LONG];
+        
+    } else {
+
+        [CBToast showToast:@"Unable to empty trash!" withDuration:TOAST_LONG];
+
+    }
+    
+}
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     
     if(buttonIndex == 0) {
         
         // empty the trash
+        [CBLoader showLoader:@"Emptying trash..."];
+        
+        [KiiFile emptyTrash:self withCallback:@selector(doneEmptying:)];
         
     }
     
@@ -164,7 +200,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
     // Configure the cell...
@@ -174,8 +210,10 @@
 	NSDateFormatter *formatter = nil;
 	formatter = [[NSDateFormatter alloc] init];
 	[formatter setTimeStyle:NSDateFormatterLongStyle];
-    cell.textLabel.text = [formatter stringFromDate:[file modified]];
+    cell.detailTextLabel.text = [formatter stringFromDate:[file modified]];
 	[formatter release];
+
+    cell.textLabel.text = [file fileName];
 
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
@@ -190,7 +228,7 @@
 
 - (void) deleteDone:(KiiFile*)file withError:(NSError*)error {
     
-    NSLog(@"Delete complete: %@ withError: %@", file, error);
+    NSLog(@"Trash complete: %@ withError: %@", file, error);
     
     // hide the loader
     [CBLoader hideLoader];
@@ -203,9 +241,33 @@
         [mFileList removeObjectAtIndex:ndx];
         
         [mTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:ndx inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+        
+    } else {
+        [CBToast showToast:@"Unable to shred file" withDuration:TOAST_LONG];
+    }
+    
+}
 
-    }        
-
+- (void) shredDone:(KiiFile*)file withError:(NSError*)error {
+    
+    NSLog(@"Shred complete: %@ withError: %@", file, error);
+    
+    // hide the loader
+    [CBLoader hideLoader];
+    
+    if(error == nil) {
+        
+        int ndx = [mFileList indexOfObject:file];
+        
+        // Delete the row from the data source
+        [mFileList removeObjectAtIndex:ndx];
+        
+        [mTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:ndx inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+        
+    } else {
+        [CBToast showToast:@"Unable to shred file" withDuration:TOAST_LONG];
+    }
+    
     
 }
 
@@ -219,16 +281,19 @@
         
         // remove the file asynchronously
         KiiFile *file = [mFileList objectAtIndex:indexPath.row];
-        [file moveToTrash:self withCallback:@selector(deleteDone:withError:)];
+        
+        if([[file trashed] boolValue]) {
+            [file shredFile:self withCallback:@selector(shredDone:withError:)];
+        } else {
+            [file moveToTrash:self withCallback:@selector(deleteDone:withError:)];
+        }
         
     }
     
 }
 
 #pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     FileDescriptionViewController *vc = [[FileDescriptionViewController alloc] initWithNibName:@"FileDescriptionViewController" bundle:nil];
     vc.mFile = [mFileList objectAtIndex:indexPath.row];

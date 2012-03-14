@@ -10,16 +10,24 @@
 
 #import <KiiSDK/Kii.h>
 
-@interface UploadViewController : UIViewController {
+@interface UploadViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate> {
     
-    IBOutlet UISegmentedControl *mSegment;
-    IBOutlet UIProgressView *mProgress;
+    IBOutlet UITextField *mTitleField;
+    IBOutlet UITextView *mBodyField;
+    
+    UIBarButtonItem *mDoneButton;
+    IBOutlet UINavigationBar *mNavigationBar;
+    
+    CGRect defaultBodyFrame;
     
 }
 
-@property (nonatomic, retain) IBOutlet UISegmentedControl *mSegment;
-@property (nonatomic, retain) IBOutlet UIProgressView *mProgress;
+@property (nonatomic, retain) IBOutlet UITextField *mTitleField;
+@property (nonatomic, retain) IBOutlet UITextView *mBodyField;
+
+@property (nonatomic, retain) IBOutlet UINavigationBar *mNavigationBar;
 
 - (IBAction) beginUpload:(id)sender;
+- (IBAction) doneEditing:(id)sender;
 
 @end

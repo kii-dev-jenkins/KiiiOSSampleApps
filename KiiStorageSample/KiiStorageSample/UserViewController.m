@@ -40,6 +40,9 @@
     NSString *email = [emailField text];
     NSString *password = [passwordField text];
     
+//    email = @"ios_test1@kii.com";
+//    password = @"password";
+    
     KiiUser *user = [KiiUser userWithEmail:email andPassword:password];
     [user authenticate:self withCallback:@selector(finishedLoggingIn:withError:)];
     
