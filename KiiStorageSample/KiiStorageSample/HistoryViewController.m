@@ -34,6 +34,24 @@
 
 }
 
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    if(buttonIndex == 0) {
+        
+        // empty the trash
+        
+    }
+    
+}
+
+- (void) showActionPanel {
+    
+    UIActionSheet *panel = [[UIActionSheet alloc] initWithTitle:@"Perform Action" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Empty Trash", nil];
+    [panel showInView:[UIApplication sharedApplication].keyWindow];
+    [panel release];
+    
+}
+
 - (void) fileListingComplete:(NSArray*)files withError:(KiiError*)error {
     
     NSLog(@"Listing complete");
@@ -66,11 +84,16 @@
     self.title = @"User Files";
     
     mFileList = [[NSMutableArray alloc] init];
- 
+    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     UIBarButtonItem *edit = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(toggleEditing)];
     self.navigationItem.rightBarButtonItem = edit;
     [edit release];
+    
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    UIBarButtonItem *action = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showActionPanel)];
+    self.navigationItem.leftBarButtonItem = action;
+    [action release];
         
 }
 
