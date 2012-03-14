@@ -10,6 +10,10 @@
 
 #import <KiiSDK/Kii.h>
 #import "CBLoader.h"
+#import "CBToast.h"
+
+#define kPreferenceEmail        @"kii-storage-sample-pref-email"
+#define kPreferencePassword     @"kii-storage-sample-pref-password"
 
 @implementation UserViewController
 
@@ -28,6 +32,10 @@
         // change the labels
         mUserId.text = [user uuid];
         
+        [CBToast showToast:@"Logged in" withDuration:TOAST_LONG];
+        
+    } else {
+        [CBToast showToast:@"Unable to log in" withDuration:TOAST_LONG];
     }
     
 }
@@ -54,21 +62,7 @@
     
     mUserId.text = @"- not logged in -";
     
-}
-
-- (void) finishedLoggingOut:(NSError*)error {
-    
-    [CBLoader hideLoader];
-    
-    if(error == nil) {
-        
-        // change the labels
-        mUserId.text = @"- not logged in -";
-        
-        // and the button
-        [mButton setTitle:@"Log In" forState:UIControlStateNormal];
-    }
-    
+    [CBToast showToast:@"Logged out" withDuration:TOAST_LONG];
 }
 
 - (void) finishedRegistration:(KiiUser*)user withError:(KiiError*)error {
@@ -81,6 +75,11 @@
         // change the labels
         mUserId.text = [user uuid];
         
+        
+        [CBToast showToast:@"Registered + Logged in" withDuration:TOAST_LONG];
+        
+    } else {
+        [CBToast showToast:@"Unable to register" withDuration:TOAST_LONG];
     }
     
 }
@@ -112,6 +111,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    NSString *defEmail = [[NSUserDefaults standardUserDefaults] stringForKey:kPreferenceEmail];
+    NSString *defPass = [[NSUserDefaults standardUserDefaults] stringForKey:kPreferencePassword];
+    
+    [emailField setText:defEmail];
+    [passwordField setText:defPass];
+    
 }
 
 - (void)viewDidUnload
@@ -137,6 +143,11 @@
 
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    // save the fields to prefs
+    [[NSUserDefaults standardUserDefaults] setObject:[emailField text] forKey:kPreferenceEmail];
+    [[NSUserDefaults standardUserDefaults] setObject:[passwordField text] forKey:kPreferencePassword];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
     [textField resignFirstResponder];
     

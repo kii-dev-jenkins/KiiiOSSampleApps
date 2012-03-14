@@ -275,16 +275,15 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        
-        // show a loader
-        [CBLoader showLoader:@"Removing File"];
-        
+                
         // remove the file asynchronously
         KiiFile *file = [mFileList objectAtIndex:indexPath.row];
         
         if([[file trashed] boolValue]) {
+            [CBLoader showLoader:@"Shredding File"];
             [file shredFile:self withCallback:@selector(shredDone:withError:)];
         } else {
+            [CBLoader showLoader:@"Trashing File"];
             [file moveToTrash:self withCallback:@selector(deleteDone:withError:)];
         }
         

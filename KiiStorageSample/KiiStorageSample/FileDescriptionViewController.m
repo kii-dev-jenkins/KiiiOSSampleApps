@@ -32,20 +32,16 @@
     
     NSLog(@"Got file body: %@ atPath: %@ withError: %@", file, atPath, err);
     
-//    if(err == nil) {
+    if(err == nil) {
         
         // put the body in the text field
-    NSError *ferr = nil;
-    NSString *body = [NSString stringWithContentsOfFile:atPath encoding:NSUTF8StringEncoding error:&ferr];
-    [mDataView setText:body];
+        NSError *ferr = nil;
+        NSString *body = [NSString stringWithContentsOfFile:atPath encoding:NSUTF8StringEncoding error:&ferr];
+        [mDataView setText:body];
     
-    if(ferr != nil) {
+    } else {
         [mDataView setText:@"Error retrieving note!"];
     }
-        
-//    } else {
-//        [mDataView setText:@"Error retrieving note!"];
-//    }
     
 }
 
