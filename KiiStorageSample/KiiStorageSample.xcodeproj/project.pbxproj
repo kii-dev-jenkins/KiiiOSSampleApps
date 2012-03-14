@@ -17,7 +17,7 @@
 		08A1C6BB150466DC00B875B4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 08A1C6B9150466DC00B875B4 /* InfoPlist.strings */; };
 		08A1C6BD150466DC00B875B4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A1C6BC150466DC00B875B4 /* main.m */; };
 		08A1C6C1150466DC00B875B4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 08A1C6C0150466DC00B875B4 /* AppDelegate.m */; };
-		08C3271415112182003CD770 /* KiiSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08C3271315112182003CD770 /* KiiSDK.framework */; };
+		08AD48E01511312F003F3ECA /* KiiSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08AD48DF1511312F003F3ECA /* KiiSDK.framework */; };
 		08EF09731504699700ACB6D4 /* CBLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 08EF09701504699700ACB6D4 /* CBLoader.m */; };
 		08EF09741504699700ACB6D4 /* CBToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 08EF09721504699700ACB6D4 /* CBToast.m */; };
 		08EF097F150469AC00ACB6D4 /* UploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08EF0977150469AC00ACB6D4 /* UploadViewController.m */; };
@@ -47,7 +47,7 @@
 		08A1C6BE150466DC00B875B4 /* KiiStorageSample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KiiStorageSample-Prefix.pch"; sourceTree = "<group>"; };
 		08A1C6BF150466DC00B875B4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		08A1C6C0150466DC00B875B4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		08C3271315112182003CD770 /* KiiSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KiiSDK.framework; path = ../../../../../../../KiiSDK.framework; sourceTree = "<group>"; };
+		08AD48DF1511312F003F3ECA /* KiiSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KiiSDK.framework; sourceTree = "<group>"; };
 		08EF096F1504699700ACB6D4 /* CBLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBLoader.h; sourceTree = "<group>"; };
 		08EF09701504699700ACB6D4 /* CBLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBLoader.m; sourceTree = "<group>"; };
 		08EF09711504699700ACB6D4 /* CBToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBToast.h; sourceTree = "<group>"; };
@@ -73,7 +73,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				08C3271415112182003CD770 /* KiiSDK.framework in Frameworks */,
 				08354EFC1504724600EA6184 /* libz.1.1.3.dylib in Frameworks */,
 				08354EFA1504724200EA6184 /* CFNetwork.framework in Frameworks */,
 				08354EF81504723500EA6184 /* MobileCoreServices.framework in Frameworks */,
@@ -81,6 +80,7 @@
 				08354EFE1504726400EA6184 /* SystemConfiguration.framework in Frameworks */,
 				08A1C6B3150466DC00B875B4 /* Foundation.framework in Frameworks */,
 				08A1C6B5150466DC00B875B4 /* CoreGraphics.framework in Frameworks */,
+				08AD48E01511312F003F3ECA /* KiiSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,7 +90,6 @@
 		08A1C6A1150466DC00B875B4 = {
 			isa = PBXGroup;
 			children = (
-				08C3271315112182003CD770 /* KiiSDK.framework */,
 				08A1C6B6150466DC00B875B4 /* KiiStorageSample */,
 				08A1C6AF150466DC00B875B4 /* Frameworks */,
 				08A1C6AD150466DC00B875B4 /* Products */,
@@ -108,6 +107,7 @@
 		08A1C6AF150466DC00B875B4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				08AD48DF1511312F003F3ECA /* KiiSDK.framework */,
 				08354EFB1504724600EA6184 /* libz.1.1.3.dylib */,
 				08354EFD1504726400EA6184 /* SystemConfiguration.framework */,
 				08354EF91504724200EA6184 /* CFNetwork.framework */,
