@@ -75,7 +75,6 @@
         // change the labels
         mUserId.text = [user uuid];
         
-        
         [CBToast showToast:@"Registered + Logged in" withDuration:TOAST_LONG];
         
     } else {
