@@ -16,12 +16,14 @@
 #import "KiiUtilities.h"
 #import "KiiRequest.h"
 #import "KiiQuery.h"
+#import "KQWhere.h"
+#import "KQExp.h"
 
 @class KiiFile, KiiUser;
 
 /** The main SDK class
  
- This class must be initialized on application launch using beginWithKey:andSecret:forAppName:. This class also allows the application to make some high-level user calls and access some application-wide data at any time using static methods.
+ This class must be initialized on application launch using beginWithID:andKey:. This class also allows the application to make some high-level user calls and access some application-wide data at any time using static methods.
  */
 @interface Kii : NSObject {
         
@@ -45,9 +47,8 @@
 /** Initialize the Kii SDK
  
  Should reside in applicationDidFinishLaunching:withResult:
- @param appKey The application key found in your Kii console
- @param appSecret The application secret found in your Kii console
- @param appName The application name found in your Kii console
+ @param appId The application ID found in your Kii developer console
+ @param appKey The application key found in your Kii developer console
  */
 + (void) beginWithID:(NSString*)appId andKey:(NSString*)appKey;
 + (void) shutDown;
