@@ -1,0 +1,455 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0814B9171519CAF200202D0A /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0814B9161519CAF200202D0A /* MessageCell.m */; };
+		0814B91E1519D26600202D0A /* NSString+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0814B91D1519D26600202D0A /* NSString+Extensions.m */; };
+		08417F0715199C1E00FDF51F /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 08417EFD15199C1E00FDF51F /* EGORefreshTableHeaderView.m */; };
+		08417F0815199C1E00FDF51F /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 08417EFF15199C1E00FDF51F /* blackArrow.png */; };
+		08417F0915199C1E00FDF51F /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08417F0015199C1E00FDF51F /* blackArrow@2x.png */; };
+		08417F0A15199C1E00FDF51F /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 08417F0115199C1E00FDF51F /* blueArrow.png */; };
+		08417F0B15199C1E00FDF51F /* blueArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08417F0215199C1E00FDF51F /* blueArrow@2x.png */; };
+		08417F0C15199C1E00FDF51F /* grayArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 08417F0315199C1E00FDF51F /* grayArrow.png */; };
+		08417F0D15199C1E00FDF51F /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08417F0415199C1E00FDF51F /* grayArrow@2x.png */; };
+		08417F0E15199C1E00FDF51F /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 08417F0515199C1E00FDF51F /* whiteArrow.png */; };
+		08417F0F15199C1E00FDF51F /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08417F0615199C1E00FDF51F /* whiteArrow@2x.png */; };
+		08417F1215199D0100FDF51F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08417F1115199D0100FDF51F /* QuartzCore.framework */; };
+		08429AFD15186E2E005ECDAC /* KiiSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08429AFC15186E2D005ECDAC /* KiiSDK.framework */; };
+		08429B0E1518707B005ECDAC /* TopicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08429B0C1518707B005ECDAC /* TopicListViewController.m */; };
+		08429B0F1518707B005ECDAC /* TopicListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08429B0D1518707B005ECDAC /* TopicListViewController.xib */; };
+		08429B1815187743005ECDAC /* BoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08429B1615187743005ECDAC /* BoardViewController.m */; };
+		08429B1915187743005ECDAC /* BoardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08429B1715187743005ECDAC /* BoardViewController.xib */; };
+		084DC0551518606D00E48B4A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 084DC0541518606D00E48B4A /* UIKit.framework */; };
+		084DC0571518606D00E48B4A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 084DC0561518606D00E48B4A /* Foundation.framework */; };
+		084DC0591518606D00E48B4A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 084DC0581518606D00E48B4A /* CoreGraphics.framework */; };
+		084DC05F1518606D00E48B4A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 084DC05D1518606D00E48B4A /* InfoPlist.strings */; };
+		084DC0611518606D00E48B4A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 084DC0601518606D00E48B4A /* main.m */; };
+		084DC0651518606D00E48B4A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 084DC0641518606D00E48B4A /* AppDelegate.m */; };
+		084DC07E151860DD00E48B4A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 084DC07D151860DD00E48B4A /* MobileCoreServices.framework */; };
+		084DC0841518613300E48B4A /* AuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 084DC0821518613300E48B4A /* AuthenticationViewController.m */; };
+		084DC0851518613300E48B4A /* AuthenticationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 084DC0831518613300E48B4A /* AuthenticationViewController.xib */; };
+		084DC093151869B300E48B4A /* CBLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 084DC090151865C300E48B4A /* CBLoader.m */; };
+		084DC094151869B500E48B4A /* CBToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 084DC092151865C300E48B4A /* CBToast.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0814B9151519CAF200202D0A /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageCell.h; path = "View Controllers/Board View/Message Cell/MessageCell.h"; sourceTree = "<group>"; };
+		0814B9161519CAF200202D0A /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageCell.m; path = "View Controllers/Board View/Message Cell/MessageCell.m"; sourceTree = "<group>"; };
+		0814B91C1519D26600202D0A /* NSString+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extensions.h"; sourceTree = "<group>"; };
+		0814B91D1519D26600202D0A /* NSString+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extensions.m"; sourceTree = "<group>"; };
+		08417EFC15199C1E00FDF51F /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
+		08417EFD15199C1E00FDF51F /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
+		08417EFF15199C1E00FDF51F /* blackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackArrow.png; sourceTree = "<group>"; };
+		08417F0015199C1E00FDF51F /* blackArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackArrow@2x.png"; sourceTree = "<group>"; };
+		08417F0115199C1E00FDF51F /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
+		08417F0215199C1E00FDF51F /* blueArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueArrow@2x.png"; sourceTree = "<group>"; };
+		08417F0315199C1E00FDF51F /* grayArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grayArrow.png; sourceTree = "<group>"; };
+		08417F0415199C1E00FDF51F /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
+		08417F0515199C1E00FDF51F /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
+		08417F0615199C1E00FDF51F /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
+		08417F1115199D0100FDF51F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		08429AFC15186E2D005ECDAC /* KiiSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KiiSDK.framework; sourceTree = "<group>"; };
+		08429B0B1518707B005ECDAC /* TopicListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TopicListViewController.h; path = "View Controllers/Topics View/TopicListViewController.h"; sourceTree = "<group>"; };
+		08429B0C1518707B005ECDAC /* TopicListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TopicListViewController.m; path = "View Controllers/Topics View/TopicListViewController.m"; sourceTree = "<group>"; };
+		08429B0D1518707B005ECDAC /* TopicListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TopicListViewController.xib; path = "View Controllers/Topics View/TopicListViewController.xib"; sourceTree = "<group>"; };
+		08429B1515187743005ECDAC /* BoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoardViewController.h; path = "View Controllers/Board View/BoardViewController.h"; sourceTree = "<group>"; };
+		08429B1615187743005ECDAC /* BoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoardViewController.m; path = "View Controllers/Board View/BoardViewController.m"; sourceTree = "<group>"; };
+		08429B1715187743005ECDAC /* BoardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BoardViewController.xib; path = "View Controllers/Board View/BoardViewController.xib"; sourceTree = "<group>"; };
+		084DC0501518606D00E48B4A /* KiiBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KiiBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		084DC0541518606D00E48B4A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		084DC0561518606D00E48B4A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		084DC0581518606D00E48B4A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		084DC05C1518606D00E48B4A /* KiiBoard-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KiiBoard-Info.plist"; sourceTree = "<group>"; };
+		084DC05E1518606D00E48B4A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		084DC0601518606D00E48B4A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		084DC0621518606D00E48B4A /* KiiBoard-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KiiBoard-Prefix.pch"; sourceTree = "<group>"; };
+		084DC0631518606D00E48B4A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		084DC0641518606D00E48B4A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		084DC07D151860DD00E48B4A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		084DC0811518613300E48B4A /* AuthenticationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AuthenticationViewController.h; path = "View Controllers/Authentication View/AuthenticationViewController.h"; sourceTree = "<group>"; };
+		084DC0821518613300E48B4A /* AuthenticationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AuthenticationViewController.m; path = "View Controllers/Authentication View/AuthenticationViewController.m"; sourceTree = "<group>"; };
+		084DC0831518613300E48B4A /* AuthenticationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AuthenticationViewController.xib; path = "View Controllers/Authentication View/AuthenticationViewController.xib"; sourceTree = "<group>"; };
+		084DC08F151865C300E48B4A /* CBLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBLoader.h; sourceTree = "<group>"; };
+		084DC090151865C300E48B4A /* CBLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBLoader.m; sourceTree = "<group>"; };
+		084DC091151865C300E48B4A /* CBToast.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBToast.h; sourceTree = "<group>"; };
+		084DC092151865C300E48B4A /* CBToast.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBToast.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		084DC04D1518606D00E48B4A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				08429AFD15186E2E005ECDAC /* KiiSDK.framework in Frameworks */,
+				084DC0551518606D00E48B4A /* UIKit.framework in Frameworks */,
+				08417F1215199D0100FDF51F /* QuartzCore.framework in Frameworks */,
+				084DC0571518606D00E48B4A /* Foundation.framework in Frameworks */,
+				084DC07E151860DD00E48B4A /* MobileCoreServices.framework in Frameworks */,
+				084DC0591518606D00E48B4A /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0814B9141519CAB400202D0A /* Message Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0814B9151519CAF200202D0A /* MessageCell.h */,
+				0814B9161519CAF200202D0A /* MessageCell.m */,
+			);
+			name = "Message Cell";
+			sourceTree = "<group>";
+		};
+		08417EF915199C1E00FDF51F /* EGOTableViewPullRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				08417EFA15199C1E00FDF51F /* Classes */,
+				08417EFE15199C1E00FDF51F /* Resources */,
+			);
+			path = EGOTableViewPullRefresh;
+			sourceTree = "<group>";
+		};
+		08417EFA15199C1E00FDF51F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				08417EFB15199C1E00FDF51F /* View */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		08417EFB15199C1E00FDF51F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				08417EFC15199C1E00FDF51F /* EGORefreshTableHeaderView.h */,
+				08417EFD15199C1E00FDF51F /* EGORefreshTableHeaderView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		08417EFE15199C1E00FDF51F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				08417EFF15199C1E00FDF51F /* blackArrow.png */,
+				08417F0015199C1E00FDF51F /* blackArrow@2x.png */,
+				08417F0115199C1E00FDF51F /* blueArrow.png */,
+				08417F0215199C1E00FDF51F /* blueArrow@2x.png */,
+				08417F0315199C1E00FDF51F /* grayArrow.png */,
+				08417F0415199C1E00FDF51F /* grayArrow@2x.png */,
+				08417F0515199C1E00FDF51F /* whiteArrow.png */,
+				08417F0615199C1E00FDF51F /* whiteArrow@2x.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		08429B141518771E005ECDAC /* Board View */ = {
+			isa = PBXGroup;
+			children = (
+				0814B9141519CAB400202D0A /* Message Cell */,
+				08429B1515187743005ECDAC /* BoardViewController.h */,
+				08429B1615187743005ECDAC /* BoardViewController.m */,
+				08429B1715187743005ECDAC /* BoardViewController.xib */,
+			);
+			name = "Board View";
+			sourceTree = "<group>";
+		};
+		084DC0451518606D00E48B4A = {
+			isa = PBXGroup;
+			children = (
+				084DC05A1518606D00E48B4A /* KiiBoard */,
+				084DC0531518606D00E48B4A /* Frameworks */,
+				084DC0511518606D00E48B4A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		084DC0511518606D00E48B4A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				084DC0501518606D00E48B4A /* KiiBoard.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		084DC0531518606D00E48B4A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				08417F1115199D0100FDF51F /* QuartzCore.framework */,
+				08429AFC15186E2D005ECDAC /* KiiSDK.framework */,
+				084DC07D151860DD00E48B4A /* MobileCoreServices.framework */,
+				084DC0541518606D00E48B4A /* UIKit.framework */,
+				084DC0561518606D00E48B4A /* Foundation.framework */,
+				084DC0581518606D00E48B4A /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		084DC05A1518606D00E48B4A /* KiiBoard */ = {
+			isa = PBXGroup;
+			children = (
+				084DC08A151865AE00E48B4A /* Utilities */,
+				084DC07F151860F600E48B4A /* View Controllers */,
+				084DC0631518606D00E48B4A /* AppDelegate.h */,
+				084DC0641518606D00E48B4A /* AppDelegate.m */,
+				084DC05B1518606D00E48B4A /* Supporting Files */,
+			);
+			path = KiiBoard;
+			sourceTree = "<group>";
+		};
+		084DC05B1518606D00E48B4A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				084DC05C1518606D00E48B4A /* KiiBoard-Info.plist */,
+				084DC05D1518606D00E48B4A /* InfoPlist.strings */,
+				084DC0601518606D00E48B4A /* main.m */,
+				084DC0621518606D00E48B4A /* KiiBoard-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		084DC07F151860F600E48B4A /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				08429B141518771E005ECDAC /* Board View */,
+				084DC09515186ACF00E48B4A /* Topics View */,
+				084DC0801518610500E48B4A /* Authentication View */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		084DC0801518610500E48B4A /* Authentication View */ = {
+			isa = PBXGroup;
+			children = (
+				084DC0811518613300E48B4A /* AuthenticationViewController.h */,
+				084DC0821518613300E48B4A /* AuthenticationViewController.m */,
+				084DC0831518613300E48B4A /* AuthenticationViewController.xib */,
+			);
+			name = "Authentication View";
+			sourceTree = "<group>";
+		};
+		084DC08A151865AE00E48B4A /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				08417EF915199C1E00FDF51F /* EGOTableViewPullRefresh */,
+				084DC08F151865C300E48B4A /* CBLoader.h */,
+				084DC090151865C300E48B4A /* CBLoader.m */,
+				084DC091151865C300E48B4A /* CBToast.h */,
+				084DC092151865C300E48B4A /* CBToast.m */,
+				0814B91C1519D26600202D0A /* NSString+Extensions.h */,
+				0814B91D1519D26600202D0A /* NSString+Extensions.m */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		084DC09515186ACF00E48B4A /* Topics View */ = {
+			isa = PBXGroup;
+			children = (
+				08429B0B1518707B005ECDAC /* TopicListViewController.h */,
+				08429B0C1518707B005ECDAC /* TopicListViewController.m */,
+				08429B0D1518707B005ECDAC /* TopicListViewController.xib */,
+			);
+			name = "Topics View";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		084DC04F1518606D00E48B4A /* KiiBoard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 084DC0741518606E00E48B4A /* Build configuration list for PBXNativeTarget "KiiBoard" */;
+			buildPhases = (
+				084DC04C1518606D00E48B4A /* Sources */,
+				084DC04D1518606D00E48B4A /* Frameworks */,
+				084DC04E1518606D00E48B4A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KiiBoard;
+			productName = KiiBoard;
+			productReference = 084DC0501518606D00E48B4A /* KiiBoard.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		084DC0471518606D00E48B4A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = "Chris Beauchamp";
+			};
+			buildConfigurationList = 084DC04A1518606D00E48B4A /* Build configuration list for PBXProject "KiiBoard" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 084DC0451518606D00E48B4A;
+			productRefGroup = 084DC0511518606D00E48B4A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				084DC04F1518606D00E48B4A /* KiiBoard */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		084DC04E1518606D00E48B4A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				084DC05F1518606D00E48B4A /* InfoPlist.strings in Resources */,
+				084DC0851518613300E48B4A /* AuthenticationViewController.xib in Resources */,
+				08429B0F1518707B005ECDAC /* TopicListViewController.xib in Resources */,
+				08429B1915187743005ECDAC /* BoardViewController.xib in Resources */,
+				08417F0815199C1E00FDF51F /* blackArrow.png in Resources */,
+				08417F0915199C1E00FDF51F /* blackArrow@2x.png in Resources */,
+				08417F0A15199C1E00FDF51F /* blueArrow.png in Resources */,
+				08417F0B15199C1E00FDF51F /* blueArrow@2x.png in Resources */,
+				08417F0C15199C1E00FDF51F /* grayArrow.png in Resources */,
+				08417F0D15199C1E00FDF51F /* grayArrow@2x.png in Resources */,
+				08417F0E15199C1E00FDF51F /* whiteArrow.png in Resources */,
+				08417F0F15199C1E00FDF51F /* whiteArrow@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		084DC04C1518606D00E48B4A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				084DC0611518606D00E48B4A /* main.m in Sources */,
+				084DC0651518606D00E48B4A /* AppDelegate.m in Sources */,
+				084DC093151869B300E48B4A /* CBLoader.m in Sources */,
+				084DC094151869B500E48B4A /* CBToast.m in Sources */,
+				084DC0841518613300E48B4A /* AuthenticationViewController.m in Sources */,
+				08429B0E1518707B005ECDAC /* TopicListViewController.m in Sources */,
+				08429B1815187743005ECDAC /* BoardViewController.m in Sources */,
+				08417F0715199C1E00FDF51F /* EGORefreshTableHeaderView.m in Sources */,
+				0814B9171519CAF200202D0A /* MessageCell.m in Sources */,
+				0814B91E1519D26600202D0A /* NSString+Extensions.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		084DC05D1518606D00E48B4A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				084DC05E1518606D00E48B4A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		084DC0721518606E00E48B4A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		084DC0731518606E00E48B4A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		084DC0751518606E00E48B4A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KiiBoard/KiiBoard-Prefix.pch";
+				INFOPLIST_FILE = "KiiBoard/KiiBoard-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		084DC0761518606E00E48B4A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KiiBoard/KiiBoard-Prefix.pch";
+				INFOPLIST_FILE = "KiiBoard/KiiBoard-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		084DC04A1518606D00E48B4A /* Build configuration list for PBXProject "KiiBoard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				084DC0721518606E00E48B4A /* Debug */,
+				084DC0731518606E00E48B4A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		084DC0741518606E00E48B4A /* Build configuration list for PBXNativeTarget "KiiBoard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				084DC0751518606E00E48B4A /* Debug */,
+				084DC0761518606E00E48B4A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 084DC0471518606D00E48B4A /* Project object */;
+}
