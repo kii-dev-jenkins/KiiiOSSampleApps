@@ -19,8 +19,6 @@
 /** The application received invalid credentials and was not initialized */
 + (KiiError*) invalidApplication;
 
-
-
 ///---------------------------------------------------------------------------------------
 /// @name Connectivity Errors (2xx)
 ///---------------------------------------------------------------------------------------
@@ -43,6 +41,15 @@
 
 /** Unable to retrieve file list */
 + (KiiError*) unableToRetrieveUserFileList;
+
+/** Invalid password format. Password must be at least 5 characters and can include these characters: a-z, A-Z, 0-9, @, #, $, %, ^, and & */
++ (KiiError*) invalidPasswordFormat;
+
+/** Invalid email format. Email must be a valid address */
++ (KiiError*) invalidEmailFormat;
+
+/** Invalid user object. Please ensure the credentials were entered properly */
++ (KiiError*) invalidUserObject;
 
 ///---------------------------------------------------------------------------------------
 /// @name File API Errors (4xx)
@@ -75,6 +82,15 @@
 
 /** Invalid remote path set for KiiFile. Must be of form:  /root/path/subpath    */
 + (KiiError*) invalidRemotePath;
+
+/** Unable to delete object from cloud */
++ (KiiError*) unableToDeleteObject;
+
+/** Invalid KiiObject - the class name contains one or more spaces */
++ (KiiError*) invalidObjectName;
+
+/** Unable to set an object as a child of itself */
++ (KiiError*) unableToSetObjectToItself;
 
 ///---------------------------------------------------------------------------------------
 /// @name Query Errors (6xx)

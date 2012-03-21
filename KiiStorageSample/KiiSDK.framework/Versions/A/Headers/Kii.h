@@ -15,6 +15,7 @@
 #import "KiiFile.h"
 #import "KiiUtilities.h"
 #import "KiiRequest.h"
+#import "KiiQuery.h"
 
 @class KiiFile, KiiUser;
 
@@ -25,8 +26,8 @@
 @interface Kii : NSObject {
         
     NSString *mAppName;
+    NSString *mAppID;
     NSString *mAppKey;
-    NSString *mAppSecret;
     
     KiiUser *currentUser;
     NSString *mAccessToken;
@@ -48,7 +49,7 @@
  @param appSecret The application secret found in your Kii console
  @param appName The application name found in your Kii console
  */
-+ (void) beginWithKey:(NSString*)appKey andSecret:(NSString*)appSecret forAppName:(NSString*)appName;
++ (void) beginWithID:(NSString*)appId andKey:(NSString*)appKey;
 + (void) shutDown;
 
 + (NSString*)baseURL;
@@ -68,10 +69,9 @@
 + (KiiUser*) currentUser;
 + (NSString*) accessToken;
 
-+ (NSString*)appSecret;
++ (NSString*)appID;
 + (NSString*)appKey;
 
-- (NSString*)appSecret;
 - (NSString*)accessToken;
 - (NSString*)appKey;
 - (NSString*)baseURL;
