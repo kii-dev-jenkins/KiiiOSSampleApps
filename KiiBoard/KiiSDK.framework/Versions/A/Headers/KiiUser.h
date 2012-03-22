@@ -18,15 +18,11 @@
 
 @class KiiError;
 @interface KiiUser : KiiCoreObject {
-    
-    NSString *userId;
-    
-//    NSString *accessToken;
-//    NSString *deviceId;
-    
+
     NSString *username;    
     NSString *email;    
     NSString *password;    
+    
 }
 
 /** Username to use for authentication or for display */
@@ -37,11 +33,6 @@
 
 /** Email address to use for authentication or for display */
 @property (readonly) NSString *email;
-
-@property (readonly) NSString *userId;
-//@property (readonly) NSString *accessToken;
-
-//@property (nonatomic, retain) NSString *deviceId;
 
 
 /** Create an empty user object

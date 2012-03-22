@@ -51,7 +51,7 @@
  
  If the key already exists, its value will be written over. If the object is of invalid type, it will return false and a KiiError will be thrown (quietly). Accepted types are any JSON-encodable objects.
  @param object The value to be set. Object must be of a JSON-encodable type (Ex: NSDictionary, NSArray, NSString, NSNumber, etc)
- @param key The key to set
+ @param key The key to set. The key must not be a system key (created, metadata, modified, type, uuid) or begin with an underscore (_)
  @return True if the object was set, false otherwise.
  */
 - (BOOL) setObject:(id)object forKey:(NSString*)key;
