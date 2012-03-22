@@ -17,7 +17,7 @@
  There are also File System methods available which are called statically, and provide system functions such as retrieving and emptying the trash.
  */
 @interface KiiFile : NSObject {    
-    NSString *fileId;
+    NSString *uuid;
     NSString *localPath;
     NSString *remotePath;
     NSString *mimeType;
@@ -32,7 +32,7 @@
 @property (nonatomic, retain) NSString *localPath;
 
 /** The remote ID of the file on the server */
-@property (readonly) NSString *fileId;
+@property (readonly) NSString *uuid;
 
 /** The Content-Type of the file on the server */
 @property (readonly) NSString *mimeType;

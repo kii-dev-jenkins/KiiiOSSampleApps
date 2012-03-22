@@ -48,7 +48,7 @@
 - (void) viewDidAppear:(BOOL)animated {
     
     // get the file path
-    NSString *fileName = [NSString stringWithFormat:@"%@.txt", [mFile fileId]];
+    NSString *fileName = [NSString stringWithFormat:@"%@.txt", [mFile uuid]];
     
     NSURL *documentPath = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
     documentPath = [documentPath URLByAppendingPathComponent:fileName];
@@ -63,7 +63,7 @@
     [CBLoader showLoader:@"Downloading note..."];
     
     // show the data associated with this file
-    mUUIDLabel.text = [mFile fileId];
+    mUUIDLabel.text = [mFile uuid];
     mDataView.text = @"Downloading note...";
     
 	NSDateFormatter *formatter = nil;

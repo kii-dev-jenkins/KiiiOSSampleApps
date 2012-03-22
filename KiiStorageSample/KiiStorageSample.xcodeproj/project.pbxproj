@@ -195,7 +195,7 @@
 		08A1C6A3150466DC00B875B4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 				ORGANIZATIONNAME = "Chris Beauchamp";
 			};
 			buildConfigurationList = 08A1C6A6150466DC00B875B4 /* Build configuration list for PBXProject "KiiStorageSample" */;
