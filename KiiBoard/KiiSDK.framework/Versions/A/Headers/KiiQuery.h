@@ -19,10 +19,10 @@
     NSString *collection;
     
     int limit;
-    int offset;
     
     KQWhere *where;
     
+    NSString *start;
     NSString *cursor;
     NSString *sortString;
 }
@@ -45,13 +45,12 @@
 - (void) setLimit:(int)limit;
 
 
-/** Set the position of the first result in the set
+/** Set the uuid of the first result in the set
  
- Will begin the query result set at the offset index provided.
- If the offset is greater than the total result set size (with a 0 offset), the result set will be empty.
- @param offset The offset for the query.
+ Will begin the query result set beginning at the uuid provided. The uuid is ignored if an object with this value does not exist in the collection.
+ @param offset The uuid to start at
  */
-- (void) setOffset:(int)offset;
+- (void) setStart:(NSString*)uuid;
 
 
 /** Set the query to sort by a field in descending order
