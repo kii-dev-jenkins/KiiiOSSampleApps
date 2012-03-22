@@ -23,15 +23,9 @@
 - (void) andExp:(KQExp*)exp;
 
 
-/** Append a KQExp with the OR operator 
- @param exp The expression to append
- */
 - (void) orExp:(KQExp*)exp;
 
 
-/** Append a KQExp with the NOT operator 
- @param exp The expression to append
- */
 - (void) notExp:(KQExp*)exp;
 
 
@@ -41,15 +35,9 @@
 - (void) andWhere:(KQWhere*)exp;
 
 
-/** Append a KQWhere with the OR operator 
- @param exp The expression to append
- */
 - (void) orWhere:(KQWhere*)exp;
 
 
-/** Append a KQWhere with the NOT operator 
- @param exp The expression to append
- */
 - (void) notWhere:(KQWhere*)exp;
 
 /** Creates a compound KQWhere object

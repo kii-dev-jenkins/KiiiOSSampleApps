@@ -48,7 +48,7 @@
 /** Set the uuid of the first result in the set
  
  Will begin the query result set beginning at the uuid provided. The uuid is ignored if an object with this value does not exist in the collection.
- @param offset The uuid to start at
+ @param uuid The uuid to start at
  */
 - (void) setStart:(NSString*)uuid;
 
