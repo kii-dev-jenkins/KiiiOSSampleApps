@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class Kii, KiiCoreObject, KiiError;
+@class KiiCoreObject, KiiError;
 
 typedef enum { GET, PUT, POST, FORMPOST, DELETE } HttpMethods;
 

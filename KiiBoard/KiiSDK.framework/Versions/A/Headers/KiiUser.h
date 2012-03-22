@@ -21,8 +21,8 @@
     
     NSString *userId;
     
-    NSString *accessToken;
-    NSString *deviceId;
+//    NSString *accessToken;
+//    NSString *deviceId;
     
     NSString *username;    
     NSString *email;    
@@ -39,7 +39,7 @@
 @property (readonly) NSString *email;
 
 @property (readonly) NSString *userId;
-@property (readonly) NSString *accessToken;
+//@property (readonly) NSString *accessToken;
 
 //@property (nonatomic, retain) NSString *deviceId;
 

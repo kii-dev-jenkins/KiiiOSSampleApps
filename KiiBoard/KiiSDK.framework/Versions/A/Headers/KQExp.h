@@ -9,10 +9,8 @@
 #import <Foundation/Foundation.h>
 
 /** Allows an application to construct an expression without dealing with query language */
-@interface KQExp : NSObject {
-    
+@interface KQExp : NSObject {    
     NSString *expression;
-    
 }
 
 - (NSString*)stringValue;
@@ -46,25 +44,5 @@
  @param value The value to compare
  */
 + (KQExp*)lessThanOrEqual:(NSString*)key value:(id)value; 
-
-
-/** Create an expression of the form key STARTS WITH value
- @param key The key to compare
- @param value The value to compare
- */
-+ (KQExp*)startsWith:(NSString*)key value:(id)value; 
-
-/** Create an expression of the form key CONTAINS value
- @param key The key to compare
- @param value The value to compare
- */
-+ (KQExp*)contains:(NSString*)key value:(id)value; 
-
-
-/** Create an expression of the form key ENDS WITH value
- @param key The key to compare
- @param value The value to compare
- */
-+ (KQExp*)endsWith:(NSString*)key value:(id)value; 
 
 @end
