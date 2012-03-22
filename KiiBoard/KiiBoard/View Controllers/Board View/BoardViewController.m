@@ -8,7 +8,7 @@
 
 #import "BoardViewController.h"
 
-#import <KiiSDK/Kii.h>
+#import <KiiSDK/KiiClient.h>
 
 #import "AppDelegate.h"
 #import "CBToast.h"
@@ -96,9 +96,9 @@
     
     KiiObject *o = [KiiObject objectWithClassName:@"post"];
     [o setObject:[messageView text] forKey:@"content"];
-    [o setObject:[[Kii currentUser] username] forKey:@"creator_name"];
+    [o setObject:[[KiiClient currentUser] username] forKey:@"creator_name"];
     [o setObject:topic forKey:@"topic"];
-    [o setObject:[Kii currentUser] forKey:@"creator"];
+    [o setObject:[KiiClient currentUser] forKey:@"creator"];
     [o save:self withCallback:@selector(donePosting:withError:)];
     
 }

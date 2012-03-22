@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 
-#import <KiiSDK/Kii.h>
+#import <KiiSDK/KiiClient.h>
 
 @implementation AppDelegate
 
@@ -25,7 +25,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
-    [Kii beginWithKey:@"510571df" andSecret:@"35eeeca5e9f196505d47ffa71e46424f" forAppName:@"ios-sample-app"];
+    [KiiClient beginWithID:@"510571df" andKey:@"35eeeca5e9f196505d47ffa71e46424f"];
     
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];

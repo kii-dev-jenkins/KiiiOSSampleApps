@@ -8,7 +8,7 @@
 
 #import "UserViewController.h"
 
-#import <KiiSDK/Kii.h>
+#import <KiiSDK/KiiClient.h>
 #import "CBLoader.h"
 #import "CBToast.h"
 
@@ -58,7 +58,7 @@
 
 - (IBAction) performLogout:(id)sender {
     
-    [Kii logOut];
+    [KiiClient logOut];
     
     mUserId.text = @"- not logged in -";
     

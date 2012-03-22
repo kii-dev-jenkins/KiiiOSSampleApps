@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import <KiiSDK/Kii.h>
+#import <KiiSDK/KiiClient.h>
 
 @interface UploadViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate> {
     

@@ -8,7 +8,7 @@
 
 #import "TopicListViewController.h"
 
-#import <KiiSDK/Kii.h>
+#import <KiiSDK/KiiClient.h>
 
 #import "BoardViewController.h"
 #import "AuthenticationViewController.h"
@@ -42,7 +42,7 @@
 
 #pragma mark - Actions
 - (void) logOut {
-    [Kii logOut];
+    [KiiClient logOut];
     
     [topicList removeAllObjects];
     [topicList release]; topicList = nil;
@@ -110,7 +110,7 @@
         
         KiiObject *topic = [KiiObject objectWithClassName:@"topic"];
         [topic setObject:topicName.text forKey:@"name"];
-        [topic setObject:[Kii currentUser] forKey:@"creator"];
+        [topic setObject:[KiiClient currentUser] forKey:@"creator"];
         [topic save:self withCallback:@selector(topicCreated:withError:)];
     }
     
@@ -138,7 +138,7 @@
 #pragma mark - View Lifecycle
 - (void) viewDidAppear:(BOOL)animated {
     
-    if(topicList == nil && [Kii loggedIn]) {
+    if(topicList == nil && [KiiClient loggedIn]) {
         topicList = [[NSMutableArray alloc] init];
         
         [self refresh];

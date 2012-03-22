@@ -8,7 +8,7 @@
 
 #import "HistoryViewController.h"
 
-#import <KiiSDK/Kii.h>
+#import <KiiSDK/KiiClient.h>
 #import "CBLoader.h"
 #import "CBToast.h"
 #import "FileDescriptionViewController.h"

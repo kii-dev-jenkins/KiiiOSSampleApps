@@ -11,7 +11,7 @@
 #import "TopicListViewController.h"
 #import "AuthenticationViewController.h"
 
-#import <KiiSDK/Kii.h>
+#import <KiiSDK/KiiClient.h>
 
 @implementation AppDelegate
 
@@ -29,7 +29,7 @@
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
 
-    [Kii beginWithID:@"4d95dcaa" andKey:@"9606978fddeed23e606b6701a55315d8"];
+    [KiiClient beginWithID:@"4d95dcaa" andKey:@"9606978fddeed23e606b6701a55315d8"];
 
 //    BoardViewController *masterViewController = [[BoardViewController alloc] initWithNibName:@"BoardViewController" bundle:nil];
     

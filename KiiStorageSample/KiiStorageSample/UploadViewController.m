@@ -40,7 +40,7 @@
 
 - (IBAction) beginUpload:(id)sender {
     
-    if(![Kii loggedIn]) {
+    if(![KiiClient loggedIn]) {
         [CBToast showToast:@"User is not logged in" withDuration:TOAST_LONG];
     } else if([[mTitleField text] length] == 0) {
         UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Enter a title for your note!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
