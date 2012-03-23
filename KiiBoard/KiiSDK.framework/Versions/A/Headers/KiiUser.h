@@ -26,13 +26,13 @@
 }
 
 /** Username to use for authentication or for display */
-@property (readonly) NSString *username;
+@property (nonatomic, retain) NSString *username;
 
 /** Password to use for authentication */
-@property (readonly) NSString *password;
+@property (nonatomic, retain) NSString *password;
 
 /** Email address to use for authentication or for display */
-@property (readonly) NSString *email;
+@property (nonatomic, retain) NSString *email;
 
 
 /** Create an empty user object
@@ -51,6 +51,16 @@
  @return a working KiiUser object
  */
 + (KiiUser*) userWithEmail:(NSString*)email andPassword:(NSString*)password;
+
+
+/** Create a user object with credentials pre-filled
+ 
+ Creates an pre-filled user object for manipulation. This user will not be authenticated until one of the authentication methods are called on it. It can be treated as any other KiiCoreObject before it is authenticated
+ @param username The user's desired username
+ @param password The user's password
+ @return a working KiiUser object
+ */
++ (KiiUser*) userWithUsername:(NSString*)username andPassword:(NSString*)password;
 
 
 /** Asynchronously authenticates a user object with the server

@@ -57,6 +57,13 @@
 - (BOOL) setObject:(id)object forKey:(NSString*)key;
 
 
+/** Removes a specific key/value pair from the object
+ If the key exists, the key/value will be removed from the object. Please note that the object must be saved before the changes propogate to the server.
+ @param key The key of the key/value pair that will be removed
+ */
+- (void) removeObjectForKey:(NSString*)key;
+
+
 /** Gets the value associated with the given key
  
  @param key The key to retrieve
