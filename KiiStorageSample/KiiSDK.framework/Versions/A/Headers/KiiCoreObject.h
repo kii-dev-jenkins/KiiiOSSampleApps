@@ -95,7 +95,7 @@
  @param delegate The object to make any callback requests to
  @param callback The callback method to be called when the request is completed
  */
-- (void) deleteObject:(id)delegate withCallback:(SEL)callback;
+- (void) delete:(id)delegate withCallback:(SEL)callback;
 
 
 /** Synchronously deletes an object from the server.
@@ -103,7 +103,7 @@
  Delete an object from the server. This method is blocking.
  @param error A KiiError object, set to nil, to test for errors
  */
-- (void) deleteObjectSynchronous:(KiiError**)error;
+- (void) deleteSynchronous:(KiiError**)error;
 
 
 /** Prints the contents of this object to log
