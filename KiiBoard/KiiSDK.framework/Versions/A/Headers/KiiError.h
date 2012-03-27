@@ -67,6 +67,9 @@
 /** Unable to shred file. Must be in the trash before it is permanently deleted. */
 + (KiiError*) shreddedFileMustBeInTrash;
 
+/** Unable to perform operation - a valid container must be set first. */
++ (KiiError*) fileContainerNotSpecified;
+
 ///---------------------------------------------------------------------------------------
 /// @name Core Object Errors (5xx)
 ///---------------------------------------------------------------------------------------
