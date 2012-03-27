@@ -8,9 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define DEFAULT_CONTAINER       @"KII_STORAGE"
-
-@class KiiError;
+@class KiiError, KiiQuery;
 
 /** Contains single file and file system information and methods
  
@@ -177,6 +175,27 @@
 + (void) emptyTrashSynchronous:(KiiError**)err;
 
 
+/** Search the available files in a specific container
+ 
+ This is a blocking method.
+ @param query The query to execute
+ @param inContainer The container to perform the query on
+ @param err A KiiError object, passed by reference. If the error is nil, the request was successful. Otherwise, the error contains a description of the issue.
+ @return An array of KiiFile objects in the query's result set
+ */
++ (NSArray*) searchSynchronous:(KiiQuery*)query inContainer:(NSString*)inContainer withError:(KiiError**)err;
+
+
+/** Search the available files
+ 
+ This operation is performed on the default container. This is a blocking method.
+ @param query The query to execute
+ @param err A KiiError object, passed by reference. If the error is nil, the request was successful. Otherwise, the error contains a description of the issue.
+ @return An array of KiiFile objects in the query's result set
+ */
++ (NSArray*) searchSynchronous:(KiiQuery*)query withError:(KiiError**)err;
+
+
 
 #pragma mark - single file methods
 
@@ -207,7 +226,7 @@
 
 /** Generates a KiiFile object in a specific container based on a local file
  @param localPath The path of the file to use
- @param container The container the file should be created in
+ @param inContainer The container the file should be created in
  @return A new KiiFile object
  */
 + (KiiFile*) fileWithLocalPath:(NSString*)localPath inContainer:(NSString*)inContainer;
@@ -223,7 +242,7 @@
 
 /** Generates a KiiFile object based on an existing file id in a specific container
  @param fileId The server ID of the file to use
- @param container The container the file should be retrieved from
+ @param inContainer The container the file should be retrieved from
  @return A new KiiFile object
  */
 + (KiiFile*) fileWithID:(NSString*)fileId inContainer:(NSString*)inContainer;

@@ -16,18 +16,23 @@
  */
 @interface KiiQuery : NSObject {
     
-    NSString *collection;
-    
     int limit;
     
     KQWhere *where;
     
     NSString *start;
-    NSString *cursor;
     NSString *sortString;
+    NSString *cursor;
 }
 
-@property (nonatomic, retain) NSString *cursor;
+//@property (nonatomic, retain) NSString *cursor;
+
+/** The object collection being queried. nil if querying for files. */
+@property (readonly) NSString *collection;
+
+/** The file container being queried. nil if querying for objects. */
+@property (readonly) NSString *container;
+
 
 /** Set the where clause/expression to execute
  

@@ -23,6 +23,8 @@
     NSMutableDictionary *customInfo;
     NSDate *created;
     NSDate *modified;
+    
+    NSMutableArray *deletedKeys;
 }
 
 /** Server-assigned global unique identifier for the object */
