@@ -252,9 +252,10 @@
  
  Updates the file data, overwriting the contents on the server with the local contents. This is a non-blocking method.
  @param delegate The object to make any callback requests to
+ @param progress The callback method to be called when progress is made on the request
  @param callback The callback method to be called when the request is completed
  */
-- (void) updateFile:(id)delegate withCallback:(SEL)callback; //
+- (void) updateFile:(id)delegate withProgress:(SEL)progress andCallback:(SEL)callback;
 
 
 /** Updates the file data
@@ -287,9 +288,10 @@
  Updates the local KiiFile object with the file body from the server. This is a non-blocking method.
  @param toPath The path of the file the body will be written to
  @param delegate The object to make any callback requests to
+ @param progress The callback method to be called when progress is made on the request
  @param callback The callback method to be called when the request is completed
  */
-- (void) getFileBody:(NSString*)toPath withDelegate:(id)delegate andCallback:(SEL)callback;
+- (void) getFileBody:(NSString*)toPath withDelegate:(id)delegate andProgress:(SEL)progress andCallback:(SEL)callback;
 
 
 /** Retrieves the file body from the server

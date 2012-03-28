@@ -8,19 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
-@class KiiCoreObject, KiiError;
+@class KiiCoreObject, KiiCallback, KiiFile, KiiError;
 
 typedef enum { GET, PUT, POST, FORMPOST, DELETE } HttpMethods;
 
 @interface KiiRequest : NSObject {
         
     // these are dev-specific values
-    id callingDelegate;
-    NSValue *callback;
+    KiiCallback *callback;
     
     NSValue *operation;
     
     KiiCoreObject *mObject;
+    KiiFile *mFile;
     
     NSString *filePath;
     NSString *downloadPath;
@@ -30,12 +30,19 @@ typedef enum { GET, PUT, POST, FORMPOST, DELETE } HttpMethods;
     int requestMethod;
     BOOL anonymous;
     
+    BOOL complete;
+    NSMutableData *responseData;
+    NSError *responseError;
+    NSInteger responseCode;
+    long long responseExpectedSize;
+    long long uploadFileSize;
+    
 }
 
 @property (nonatomic, retain) NSValue *operation;
 
-@property (nonatomic, retain) id callingDelegate;
-@property (nonatomic, retain) NSValue *callback;
+@property (nonatomic, retain) KiiCallback *callback;
+@property (nonatomic, retain) KiiFile *mFile;
 
 @property (nonatomic, retain) NSString *requestPath;
 @property (nonatomic, retain) NSDictionary *postData;

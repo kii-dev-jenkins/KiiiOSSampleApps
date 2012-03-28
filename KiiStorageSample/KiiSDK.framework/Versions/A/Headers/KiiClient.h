@@ -73,6 +73,11 @@
 + (NSString*)appID;
 + (NSString*)appKey;
 
+/** Get the current version of the sdk
+ @return A string representing the current version
+ */
++ (NSString*)SDKVersion;
+
 - (NSString*)accessToken;
 - (NSString*)appKey;
 - (NSString*)baseURL;
