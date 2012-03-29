@@ -21,39 +21,27 @@
     if(t < 60) { str = [NSLocalizedString(@"just now", nil) capitalizedString]; } 
     else if(t < 60*60) { 
         i = (int)floor(t/60);
-        
-        NSString *minutes = (i==1) ? NSLocalizedString(@"minute", @"time - minute singular") : NSLocalizedString(@"minutes", @"time - minute plural");
-        str = [NSString stringWithFormat:@"%d %@ %@",i,minutes,ago]; 
+        str = [NSString stringWithFormat:@"%dm %@",i,ago]; 
         
     } else if(t < 60*60*24) { 
         i = (int)floor(t/3600);
-        
-        NSString *hours = (i==1) ? NSLocalizedString(@"hour", @"time - hour singular") : NSLocalizedString(@"hours", @"time - hour plural");
-        str = [NSString stringWithFormat:@"%d %@ %@",i,hours,ago]; 
+        str = [NSString stringWithFormat:@"%dh %@",i,ago]; 
         
     } else if(t < 60*60*24*7) { 
         i = (int)floor(t/86400);
-        
-        NSString *days = (i==1) ? NSLocalizedString(@"day", @"time - day singular") : NSLocalizedString(@"days", @"time - day plural");
-        str = [NSString stringWithFormat:@"%d %@ %@",i,days,ago]; 
+        str = [NSString stringWithFormat:@"%dd %@",i,ago]; 
         
     } else if(t < 60*60*24*7*4) { 
         i = (int)floor(t/604800);
-        
-        NSString *weeks = (i==1) ? NSLocalizedString(@"week", @"time - week singular") : NSLocalizedString(@"weeks", @"time - week plural");
-        str = [NSString stringWithFormat:@"%d %@ %@",i,weeks,ago]; 
+        str = [NSString stringWithFormat:@"%dw %@",i,ago]; 
         
     } else if(t < 60*60*24*7*4*12) { 
         i = (int)floor(t/2419200);
-        
-        NSString *months = (i==1) ? NSLocalizedString(@"month", @"time - month singular") : NSLocalizedString(@"months", @"time - month plural");
-        str = [NSString stringWithFormat:@"%d %@ %@",i,months,ago]; 
+        str = [NSString stringWithFormat:@"%dmo %@",i,ago]; 
         
     } else { 
         i = (int)floor(t/29030400);
-        
-        NSString *years = (i==1) ? NSLocalizedString(@"year", @"time - year singular") : NSLocalizedString(@"years", @"time - year plural");
-        str = [NSString stringWithFormat:@"%d %@ %@",i,years,ago]; 
+        str = [NSString stringWithFormat:@"%dy %@",i,ago]; 
         
     }
     

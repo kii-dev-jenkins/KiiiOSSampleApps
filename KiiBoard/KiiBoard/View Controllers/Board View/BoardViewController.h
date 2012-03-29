@@ -12,14 +12,12 @@
 
 @class KiiObject;
 
-@interface BoardViewController : UIViewController <EGORefreshTableHeaderDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface BoardViewController : UIViewController <EGORefreshTableHeaderDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 {
     EGORefreshTableHeaderView *_refreshHeaderView;
-    
-    UITableView *tableView;
-    UITextView *messageView;
 
     NSMutableArray *messageList;
+    NSMutableArray *cellList;
 	
 	//  Reloading var should really be your tableviews datasource
 	//  Putting it here for demo purposes 
@@ -27,10 +25,13 @@
 }
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
-@property (nonatomic, retain) IBOutlet UITextView *messageView;
+@property (nonatomic, retain) IBOutlet UIView *enterMessageView;
+@property (nonatomic, retain) IBOutlet UITextField *messageField;
 @property (nonatomic, retain) KiiObject *topic;
 
 - (void)reloadTableViewDataSource;
 - (void)doneLoadingTableViewData;
+
+- (IBAction)postMessage:(id)sender;
 
 @end

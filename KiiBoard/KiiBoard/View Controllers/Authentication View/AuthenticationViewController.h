@@ -8,17 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AuthenticationViewController : UIViewController <UITextFieldDelegate>
-{
-    
-    /*
-    UITextField *emailField;
-    UITextField *passwordField;
-    */
-}
+@class PaddedTextField;
 
-@property (nonatomic, retain) IBOutlet UITextField *emailField;
-@property (nonatomic, retain) IBOutlet UITextField *passwordField;
+@interface AuthenticationViewController : UIViewController <UITextFieldDelegate>
+
+@property (nonatomic, retain) IBOutlet PaddedTextField *emailField;
+@property (nonatomic, retain) IBOutlet PaddedTextField *passwordField;
 
 - (IBAction)logIn:(id)sender;
 - (IBAction)registerUser:(id)sender;

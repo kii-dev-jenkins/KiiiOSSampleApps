@@ -10,6 +10,7 @@
 
 #import "TopicListViewController.h"
 #import "AuthenticationViewController.h"
+#import "BoardViewController.h"
 
 #import <KiiSDK/KiiClient.h>
 
@@ -33,7 +34,10 @@
 
 //    BoardViewController *masterViewController = [[BoardViewController alloc] initWithNibName:@"BoardViewController" bundle:nil];
     
+    
     TopicListViewController *masterViewController = [[[TopicListViewController alloc] initWithNibName:@"TopicListViewController" bundle:nil] autorelease];
+//    BoardViewController *masterViewController = [[BoardViewController alloc] initWithNibName:@"BoardViewController" bundle:nil];
+    
     self.navigationController = [[[UINavigationController alloc] initWithRootViewController:masterViewController] autorelease];
     self.window.rootViewController = self.navigationController;
 

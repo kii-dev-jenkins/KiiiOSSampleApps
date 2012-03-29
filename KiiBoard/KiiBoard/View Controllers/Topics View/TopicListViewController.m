@@ -12,7 +12,10 @@
 
 #import "BoardViewController.h"
 #import "AuthenticationViewController.h"
+#import "TopicListCell.h"
+
 #import "CBToast.h"
+#import "NSString+Extensions.h"
 
 @implementation TopicListViewController
 
@@ -104,7 +107,7 @@
 
     NSLog(@"string entered=%@ withButton: %d", topicName.text, buttonIndex);
     
-    if(buttonIndex == 1) {
+    if(buttonIndex == 1 && [topicName.text length] > 0) {
         
         [CBToast showToast:@"Creating Topic" withDuration:TOAST_SHORT isPersistent:TRUE];
         
@@ -186,6 +189,10 @@
 
 #pragma mark - Table view data source
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 65.0f;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
@@ -198,36 +205,37 @@
     return [topicList count];
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    cell.backgroundColor = (indexPath.row % 2 == 0) ? [UIColor clearColor] : [UIColor colorWithWhite:0.905882353f alpha:1.0f];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    TopicListCell *cell = (TopicListCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[TopicListCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
 
     KiiObject *topic = [topicList objectAtIndex:indexPath.row];
 
     // Configure the cell...
-    cell.textLabel.text = [topic getObjectForKey:@"name"];
-
-    NSDateFormatter *formatter = nil;
-	formatter = [[NSDateFormatter alloc] init];
-	[formatter setTimeStyle:NSDateFormatterLongStyle];
-    cell.detailTextLabel.text = [formatter stringFromDate:[topic modified]];
-	[formatter release];
+    cell.title.text = [topic getObjectForKey:@"name"];
+    cell.time.text = [NSString timeAgoFromDate:[topic modified]];
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+//    cell.backgroundView.backgroundColor = (indexPath.row % 2 == 0) ? [UIColor clearColor] : [UIColor colorWithWhite:0.905882353f alpha:1.0f];
 
-    return cell;
+    return (UITableViewCell*)cell;
 }
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     KiiObject *topic = [topicList objectAtIndex:indexPath.row];
+    [topic describe];
 
     BoardViewController *vc = [[BoardViewController alloc] initWithNibName:@"BoardViewController" bundle:nil];
     [vc setTopic:topic];

@@ -8,7 +8,10 @@
 
 #import "AuthenticationViewController.h"
 
-#import <KiiSDK/Kii.h>
+#import "RegistrationViewController.h"
+#import "PaddedTextField.h"
+
+#import <KiiSDK/KiiClient.h>
 
 #import "CBLoader.h"
 #import "CBToast.h"
@@ -93,75 +96,41 @@
 
 
 #pragma mark - Registration Methods
-- (void) finishedRegistration:(KiiUser*)user withError:(KiiError*)error {
-    
-    [CBLoader hideLoader];
-    
-    // the user has logged in successfully
-    if(error == nil) {
-        
-        [self dismissModalViewControllerAnimated:TRUE];
-
-        [CBToast showToast:@"Registered + Logged in" withDuration:TOAST_LONG isPersistent:FALSE];
-        
-    } else {
-        [CBToast showToast:@"Unable to register" withDuration:TOAST_LONG isPersistent:FALSE];
-    }
-    
-}
-
 - (IBAction)registerUser:(id)sender {
     
     // hide the keyboard
     [emailField resignFirstResponder];
     [passwordField resignFirstResponder];
-    
-    [CBLoader showLoader:@"Registering..."];
         
-    NSString *email = [emailField text];
-    NSString *password = [passwordField text];
-    
-    KiiUser *user = [KiiUser userWithEmail:email andPassword:password];
-    [user performRegistration:self withCallback:@selector(finishedRegistration:withError:)];
-    
+    RegistrationViewController *vc = [[RegistrationViewController alloc] initWithNibName:@"RegistrationViewController" bundle:nil];
+    [self presentModalViewController:vc animated:TRUE];
+    [vc release];
 
 }
 
 #pragma mark - UITextFieldDelegate
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    
-    // shift the view up so the user can see both fields
-    [UIView animateWithDuration:0.3f 
-                          delay:0.0f 
-                        options:UIViewAnimationCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState 
-                     animations:^{ 
-                         [self.view setFrame:CGRectMake(0, -160, self.view.frame.size.width, self.view.frame.size.height)];
-                     }
-                     completion:nil];
-    
-}
-
 - (void) textFieldDidEndEditing:(UITextField *)textField {
     
     // save the fields to preferences so the user doesn't have to type each time
     [[NSUserDefaults standardUserDefaults] setObject:[emailField text] forKey:kPreferenceEmail];
     [[NSUserDefaults standardUserDefaults] setObject:[passwordField text] forKey:kPreferencePassword];
     [[NSUserDefaults standardUserDefaults] synchronize];    
-    
-    // shift the view up so the user can see both fields
-    [UIView animateWithDuration:0.3f 
-                          delay:0.0f 
-                        options:UIViewAnimationCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState 
-                     animations:^{ 
-                         [self.view setFrame:CGRectMake(0, 20, self.view.frame.size.width, self.view.frame.size.height)];
-                     }
-                     completion:nil];
-    
+
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return FALSE;
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+    
+    NSLog(@"VWA: %@ : %d", [KiiClient currentUser], [KiiClient loggedIn] ? 1 : 0);
+    
+    if([KiiClient loggedIn]) {
+        [self dismissModalViewControllerAnimated:TRUE];
+    }
+    
 }
 
 @end

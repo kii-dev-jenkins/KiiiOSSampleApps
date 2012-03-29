@@ -8,15 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MessageCell : UITableViewCell {
+@interface MessageCell : UITableViewCell
 
-}
-
-@property (nonatomic, retain) UILabel *nameLabel;
+@property (nonatomic, retain) NSNumber *messageOnLeft;
 @property (nonatomic, retain) UILabel *timeLabel;
 @property (nonatomic, retain) UILabel *bodyLabel;
 
-+ (CGFloat) getCellHeight:(NSString*)msg;
-- (void) setMessageContent:(NSString*)content;
++ (CGFloat) getCellHeight:(NSString*)msg withTime:(NSString*)time isLeft:(BOOL)isLeft;
+- (void) setMessageContent:(NSString*)content withTime:(NSString*)time;
 
 @end

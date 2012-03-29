@@ -13,11 +13,12 @@
 #import "AppDelegate.h"
 #import "CBToast.h"
 #import "MessageCell.h"
+#import "FromCell.h"
 #import "NSString+Extensions.h"
 
 @implementation BoardViewController
 
-@synthesize tableView, messageView;
+@synthesize tableView, enterMessageView, messageField;
 @synthesize topic;
 
 #pragma mark - Retrieved Results
@@ -80,22 +81,14 @@
     
 }
 
-- (void) cancelMessage {
+- (IBAction)postMessage:(id)sender {
     
-    [messageView setHidden:TRUE];
-    [messageView resignFirstResponder];
-    
-}
-
-- (void) postMessage {
-    
-    [messageView setHidden:TRUE];
-    [messageView resignFirstResponder];
+    [messageField resignFirstResponder];
 
     [CBToast showToast:@"Posting Message" withDuration:TOAST_SHORT isPersistent:TRUE];
     
     KiiObject *o = [KiiObject objectWithClassName:@"post"];
-    [o setObject:[messageView text] forKey:@"content"];
+    [o setObject:[messageField text] forKey:@"content"];
     [o setObject:[[KiiClient currentUser] username] forKey:@"creator_name"];
     [o setObject:topic forKey:@"topic"];
     [o setObject:[KiiClient currentUser] forKey:@"creator"];
@@ -103,22 +96,49 @@
     
 }
 
-- (void) createMessage {
+- (void) loadCells {
     
-    [messageView becomeFirstResponder];
-    [messageView setHidden:FALSE];
-    
-    [self setTitle:@"Write Message"];
-    
-    UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelMessage)];    
-    [self.navigationItem setLeftBarButtonItem:cancel animated:TRUE];
-    [cancel release];
-    
-    UIBarButtonItem *post = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(postMessage)];    
-    [self.navigationItem setRightBarButtonItem:post animated:TRUE];
-    [post release];
+    NSLog(@"Loading cells");
 
+    [cellList removeAllObjects];    
     
+    BOOL left = FALSE;
+    KiiObject *previousMessage = nil;
+    
+    for(KiiObject *message in messageList) {
+        
+        if(previousMessage == nil || (![[previousMessage getObjectForKey:@"creator_name"] isEqualToString:[message getObjectForKey:@"creator_name"]])) {
+            
+            left = !left;
+
+            FromCell *from = [[FromCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FromCell"];
+            from.title.text = [message getObjectForKey:@"creator_name"];
+            
+            if([cellList count] == 0) {
+                from.title.frame = CGRectMake(0, 0, 320, 32);
+            }
+            
+            [cellList addObject:from];
+            [from release];
+                        
+        }
+                
+        MessageCell *cell = [[MessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MessageCell"];
+                
+        // Configure the cell...
+        [cell setMessageOnLeft:[NSNumber numberWithBool:left]];
+        [cell setMessageContent:[message getObjectForKey:@"content"] withTime:[NSString timeAgoFromDate:[message created]]];
+        
+        [cellList addObject:cell];
+        
+        [cell release];
+        
+        previousMessage = message;
+    }
+    
+    NSLog(@"Cells: %@", cellList);
+    
+    [self.tableView reloadData];
 }
 
 - (void)viewDidLoad
@@ -141,10 +161,7 @@
     self.title = [topic getObjectForKey:@"name"];
     
     messageList = [[NSMutableArray alloc] init];
-    
-    UIBarButtonItem *create = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(createMessage)];    
-    [self.navigationItem setRightBarButtonItem:create];
-    [create release];
+    cellList = [[NSMutableArray alloc] init];
     
     [self refresh];
     
@@ -168,11 +185,15 @@
 - (NSInteger)tableView:(UITableView *)tv numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [messageList count];
+    return [cellList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"Trying to draw");
+    NSLog(@"Drawing[%d]: %@", indexPath.row, cellList);
+    return [cellList objectAtIndex:indexPath.row];
+    /*
     static NSString *CellIdentifier = @"Cell";    
     MessageCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -187,6 +208,7 @@
     cell.timeLabel.text = [NSString timeAgoFromDate:[message created]];
     
     return cell;
+     */
 }
 
 /*
@@ -213,8 +235,35 @@
 */
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    KiiObject *message = [messageList objectAtIndex:indexPath.row];
-    return [MessageCell getCellHeight:[message getObjectForKey:@"content"]];
+    
+    CGFloat retVal = indexPath.row == 0 ? 32.0f : 44.0f;
+    
+    NSLog(@"Trying to get height");
+    
+    UITableViewCell *cell = [cellList objectAtIndex:indexPath.row];
+    
+    NSLog(@"cell: %@", cell);
+    
+    int msgNdx = 0;
+    for(int i=0; i<indexPath.row; i++) {
+        if([[cellList objectAtIndex:i] isKindOfClass:[MessageCell class]]) {
+            ++msgNdx;
+        }
+    }
+    
+    if([cell isKindOfClass:[MessageCell class]]) {
+        KiiObject *message = [messageList objectAtIndex:msgNdx];
+        [message describe];
+
+        MessageCell *mcell = (MessageCell*)cell;
+        
+        NSString *time = [NSString timeAgoFromDate:[message created]];
+        retVal = [MessageCell getCellHeight:[message getObjectForKey:@"content"] withTime:time isLeft:[[mcell messageOnLeft] boolValue]];
+    }
+    
+    NSLog(@"Got height: %lf", retVal);
+    
+    return retVal;
 }
 
 #pragma mark - Table view delegate
@@ -248,7 +297,7 @@
 	_reloading = NO;
 	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
     
-    [self.tableView reloadData];
+    [self loadCells];
 }
 
 #pragma mark -
@@ -286,17 +335,50 @@
 	
 }
 
-#pragma mark - UITextViewDelegate
-- (void)textViewDidEndEditing:(UITextView *)textView {
+#pragma mark - UITextFieldDelegate
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
     
-    [self setTitle:[topic getObjectForKey:@"name"]];
+    // shift the view up so the user can see both fields
+    [UIView animateWithDuration:0.25f 
+                          delay:0.0f 
+                        options:UIViewAnimationCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState 
+                     animations:^{ 
+                         [tableView setFrame:CGRectMake(0, 0, 320, 371-216)];
+                         [enterMessageView setFrame:CGRectMake(0, self.view.frame.size.height - enterMessageView.frame.size.height - 216, 320, enterMessageView.frame.size.height)];
+                     }
+                     completion:^(BOOL complete) {
 
-    UIBarButtonItem *create = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(createMessage)];    
-    [self.navigationItem setRightBarButtonItem:create animated:TRUE];
-    [create release];
+                         if(tableView.contentSize.height > tableView.frame.size.height) {
+                             [tableView setContentOffset:CGPointMake(0, tableView.contentSize.height - tableView.frame.size.height) animated:TRUE];
+                         }
+
+                     }];
     
-    [self.navigationItem setLeftBarButtonItem:nil animated:TRUE];
+}
+
+- (void) textFieldDidEndEditing:(UITextField *)textField {
     
+    // shift the view up so the user can see both fields
+    [UIView animateWithDuration:0.25f 
+                          delay:0.0f 
+                        options:UIViewAnimationCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState 
+                     animations:^{ 
+                         [tableView setFrame:CGRectMake(0, 0, 320, 371)];
+                         [enterMessageView setFrame:CGRectMake(0, self.view.frame.size.height - enterMessageView.frame.size.height, 320, enterMessageView.frame.size.height)];
+                     }
+                     completion:^(BOOL complete) {
+                         
+                         if(tableView.contentSize.height > tableView.frame.size.height) {
+                             [tableView setContentOffset:CGPointMake(0, tableView.contentSize.height - tableView.frame.size.height) animated:TRUE];
+                         }
+                         
+                     }];
+    
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return FALSE;
 }
 
 @end
