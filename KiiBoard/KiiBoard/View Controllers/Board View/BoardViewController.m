@@ -21,6 +21,59 @@
 @synthesize tableView, enterMessageView, messageField;
 @synthesize topic;
 
+
+- (int) loadCells:(BOOL)withReload {
+    
+    NSLog(@"Loading cells");
+    
+    int prevCount = [cellList count];
+    
+    [cellList removeAllObjects];    
+    
+    BOOL left = FALSE;
+    KiiObject *previousMessage = nil;
+    
+    for(KiiObject *message in messageList) {
+        
+        if(previousMessage == nil || (![[previousMessage getObjectForKey:@"creator_name"] isEqualToString:[message getObjectForKey:@"creator_name"]])) {
+            
+            left = !left;
+            
+            FromCell *from = [[FromCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FromCell"];
+            from.title.text = [message getObjectForKey:@"creator_name"];
+            
+            if([cellList count] == 0) {
+                from.title.frame = CGRectMake(0, 0, 320, 32);
+            }
+            
+            [cellList addObject:from];
+            [from release];
+            
+        }
+        
+        MessageCell *cell = [[MessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MessageCell"];
+        
+        // Configure the cell...
+        [cell setMessageOnLeft:[NSNumber numberWithBool:left]];
+        [cell setMessageContent:[message getObjectForKey:@"content"] withTime:[NSString timeAgoFromDate:[message created]]];
+        
+        [cellList addObject:cell];
+        
+        [cell release];
+        
+        previousMessage = message;
+    }
+    
+    NSLog(@"Cells: %@", cellList);
+    
+    if(withReload) {
+        [self.tableView reloadData];
+    }
+    
+    return [cellList count] - prevCount;
+}
+
+
 #pragma mark - Retrieved Results
 - (void) queryFinished:(KiiQuery*)query withResults:(NSArray*)messages andError:(KiiError*)error {
     
@@ -64,13 +117,23 @@
         
         [CBToast showToast:@"Message Posted!" withDuration:TOAST_LONG isPersistent:FALSE];
         
+        [messageField setText:@""];
+        
         [self.tableView beginUpdates];
         
         [messageList insertObject:post atIndex:0];
         
-        NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-        [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
-                              withRowAnimation:UITableViewRowAnimationFade];
+        int newCells = [self loadCells:FALSE];
+        
+        NSMutableArray *indexPaths = [NSMutableArray array];
+        if(newCells == 1) {
+            [indexPaths addObject:[NSIndexPath indexPathForRow:1 inSection:0]];
+        } else if(newCells == 2) {
+            [indexPaths addObject:[NSIndexPath indexPathForRow:0 inSection:0]];
+            [indexPaths addObject:[NSIndexPath indexPathForRow:1 inSection:0]];
+        }
+        
+        [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
         
         [self.tableView endUpdates];
 
@@ -94,51 +157,6 @@
     [o setObject:[KiiClient currentUser] forKey:@"creator"];
     [o save:self withCallback:@selector(donePosting:withError:)];
     
-}
-
-- (void) loadCells {
-    
-    NSLog(@"Loading cells");
-
-    [cellList removeAllObjects];    
-    
-    BOOL left = FALSE;
-    KiiObject *previousMessage = nil;
-    
-    for(KiiObject *message in messageList) {
-        
-        if(previousMessage == nil || (![[previousMessage getObjectForKey:@"creator_name"] isEqualToString:[message getObjectForKey:@"creator_name"]])) {
-            
-            left = !left;
-
-            FromCell *from = [[FromCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FromCell"];
-            from.title.text = [message getObjectForKey:@"creator_name"];
-            
-            if([cellList count] == 0) {
-                from.title.frame = CGRectMake(0, 0, 320, 32);
-            }
-            
-            [cellList addObject:from];
-            [from release];
-                        
-        }
-                
-        MessageCell *cell = [[MessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MessageCell"];
-                
-        // Configure the cell...
-        [cell setMessageOnLeft:[NSNumber numberWithBool:left]];
-        [cell setMessageContent:[message getObjectForKey:@"content"] withTime:[NSString timeAgoFromDate:[message created]]];
-        
-        [cellList addObject:cell];
-        
-        [cell release];
-        
-        previousMessage = message;
-    }
-    
-    NSLog(@"Cells: %@", cellList);
-    
-    [self.tableView reloadData];
 }
 
 - (void)viewDidLoad
@@ -193,22 +211,6 @@
     NSLog(@"Trying to draw");
     NSLog(@"Drawing[%d]: %@", indexPath.row, cellList);
     return [cellList objectAtIndex:indexPath.row];
-    /*
-    static NSString *CellIdentifier = @"Cell";    
-    MessageCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[MessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
-    
-    KiiObject *message = [messageList objectAtIndex:indexPath.row];
-    
-    // Configure the cell...
-    cell.nameLabel.text = [message getObjectForKey:@"creator_name"];
-    [cell setMessageContent:[message getObjectForKey:@"content"]];
-    cell.timeLabel.text = [NSString timeAgoFromDate:[message created]];
-    
-    return cell;
-     */
 }
 
 /*
@@ -289,6 +291,8 @@
 	//  put here just for demo
 	_reloading = YES;
 	
+    [self refresh];
+
 }
 
 - (void)doneLoadingTableViewData{
@@ -297,7 +301,7 @@
 	_reloading = NO;
 	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
     
-    [self loadCells];
+    [self loadCells:TRUE];
 }
 
 #pragma mark -
@@ -316,11 +320,7 @@
 #pragma mark EGORefreshTableHeaderDelegate Methods
 
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
-	
-	[self reloadTableViewDataSource];
-    
-    [self refresh];
-	
+    [self reloadTableViewDataSource];
 }
 
 - (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view{

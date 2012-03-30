@@ -87,10 +87,18 @@
     // show a loader
     [CBLoader showLoader:@"Logging In..."];
     
-    NSString *email = [emailField text];
+    NSString *email = nil;
+    NSString *username = nil;
     NSString *password = [passwordField text];
     
-    KiiUser *user = [KiiUser userWithEmail:email andPassword:password];
+    NSRange range = [[emailField text] rangeOfString:@"@" options:NSCaseInsensitiveSearch];
+    if(range.location != NSNotFound) {
+        email = [emailField text];
+    } else {
+        username = [emailField text];
+    }
+        
+    KiiUser *user = (email == nil) ? [KiiUser userWithUsername:username andPassword:password] : [KiiUser userWithEmail:email andPassword:password];
     [user authenticate:self withCallback:@selector(finishedLoggingIn:withError:)];
 }
 

@@ -30,7 +30,8 @@
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
 
-    [KiiClient beginWithID:@"4d95dcaa" andKey:@"9606978fddeed23e606b6701a55315d8"];
+    [KiiClient beginWithID:@"8b348e3b" andKey:@"61d3ab3c3ccef4c072eead7a281eec60"];
+    // testing [KiiClient beginWithID:@"4d95dcaa" andKey:@"9606978fddeed23e606b6701a55315d8"];
 
 //    BoardViewController *masterViewController = [[BoardViewController alloc] initWithNibName:@"BoardViewController" bundle:nil];
     

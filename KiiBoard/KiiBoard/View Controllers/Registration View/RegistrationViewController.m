@@ -107,7 +107,10 @@
         [CBLoader showLoader:@"Registering..."];
 
         KiiUser *user = [KiiUser userWithEmail:email andPassword:password];
+        [user setUsername:username];
+        
         [user describe];
+        
         [user performRegistration:self withCallback:@selector(finishedRegistration:withError:)];
         
     }
