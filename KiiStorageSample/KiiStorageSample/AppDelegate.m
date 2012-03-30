@@ -25,7 +25,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
-    [KiiClient beginWithID:@"510571df" andKey:@"35eeeca5e9f196505d47ffa71e46424f"];
+    [KiiClient beginWithID:@"7744cc5b" andKey:@"d4e1b0d6c8268b66734c21619ec58e44"];
     
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
