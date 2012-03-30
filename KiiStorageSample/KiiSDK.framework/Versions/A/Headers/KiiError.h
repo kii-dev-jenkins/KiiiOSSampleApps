@@ -98,6 +98,7 @@
 /** The key of the object being set is a preferred key, please try a different key */
 + (KiiError*) invalidAttributeKey;
 
+
 ///---------------------------------------------------------------------------------------
 /// @name Query Errors (6xx)
 ///---------------------------------------------------------------------------------------
