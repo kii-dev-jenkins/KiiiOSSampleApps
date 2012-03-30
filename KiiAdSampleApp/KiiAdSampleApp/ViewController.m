@@ -23,38 +23,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	
+    KiiAdnet *adView = [KiiAdnet requestAdWithDelegate:self withApplicationId:@"d35b57a5" andApplicationKey:@"96f8cb72c806db4da817522de6475655"];
+    [adView setTestMode:TRUE];
     
-    KiiAdnet *adView = [KiiAdnet requestAdWithDelegate:self withApplicationId:@"ad5180b2" andApplicationKey:@"bb42cfa53de818ba9f940a26553c9ccd"];
     [self.view addSubview:adView];
 
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-	[super viewDidDisappear:animated];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -62,5 +36,15 @@
     // Return YES for supported orientations
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
+
+#pragma mark - KiiAdnet Delegate
+- (void) failedToReceiveAd:(KiiAdnet*)adView {
+    NSLog(@"Really failed %@", adView);
+}
+
+- (void) servedAd:(KiiAdnet*)adView {
+    NSLog(@"Ad served to view: %@", adView);
+}
+
 
 @end
