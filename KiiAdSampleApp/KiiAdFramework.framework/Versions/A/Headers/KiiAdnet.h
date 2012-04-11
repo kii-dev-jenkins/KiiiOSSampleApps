@@ -42,7 +42,9 @@
  
  Create an instance of KiiAdNet using its static constructor within the view controller in which you'd like your ad to appear. Then go to the online console to set up your ad networks.
  
- See a working example at: http://github.com
+ Implements the KiiAdnetDelegate protocol
+ 
+ See a working example at: http://github.com/kii-dev-jenkins
  */
 @interface KiiAdnet : UIView <AdWhirlDelegate> {
     
