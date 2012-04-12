@@ -64,7 +64,7 @@
     NSURL *documentPath = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
     documentPath = [documentPath URLByAppendingPathComponent:fileName];
 
-    [mFile getFileBody:[documentPath path] withDelegate:self andCallback:@selector(gotFileBody:atPath:withError:)];
+    [mFile getFileBody:[documentPath path] withDelegate:self andProgress:nil andCallback:@selector(gotFileBody:atPath:withError:)];
 }
 
 #pragma mark - View lifecycle

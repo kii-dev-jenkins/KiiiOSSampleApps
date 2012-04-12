@@ -76,7 +76,7 @@
         NSLog(@"Using file: %@ with content: %@", [documentPath path], [mBodyField text]);
         
         KiiFile *f = [KiiFile fileWithLocalPath:[documentPath path]];
-        [f updateFile:self withCallback:@selector(uploadComplete:withError:)];
+        [f updateFile:self withProgress:nil andCallback:@selector(uploadComplete:withError:)];
     }
     
 }
