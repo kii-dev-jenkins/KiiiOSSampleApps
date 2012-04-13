@@ -63,6 +63,14 @@
 + (KiiUser*) userWithUsername:(NSString*)username andPassword:(NSString*)password;
 
 
+/** Create a KiiUser that references an existing user
+
+ @param uri A user-specific URI
+ @return a working KiiUser
+ */
++ (KiiUser*) userWithURI:(NSString*)uri;
+
+
 /** Asynchronously authenticates a user object with the server
  
  Authenticates a user with the server. The user object must have an associated email/password combination. This method is non-blocking.

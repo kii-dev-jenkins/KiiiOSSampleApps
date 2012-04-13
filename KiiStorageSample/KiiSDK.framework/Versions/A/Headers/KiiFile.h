@@ -57,6 +57,9 @@
 /** A boolean value, TRUE if the file is in the trash, FALSE otherwise */
 @property (readonly) NSNumber *trashed;
 
+/** Get a specifically formatted string referencing the file. The file must exist in the cloud (have a valid UUID). */
+@property (readonly) NSString *objectURI;
+
 #pragma mark - file system methods
 
 ///---------------------------------------------------------------------------------------
@@ -232,20 +235,12 @@
 + (KiiFile*) fileWithLocalPath:(NSString*)localPath inContainer:(NSString*)inContainer;
 
 
-/** Generates a KiiFile object based on an existing file id
- Uses the default container.
- @param fileId The server ID of the file to use
+/** Generates a KiiFile object based on an existing file URI
+
+ @param uri A file-specific URI
  @return A new KiiFile object
  */
-+ (KiiFile*) fileWithID:(NSString*)fileId;
-
-
-/** Generates a KiiFile object based on an existing file id in a specific container
- @param fileId The server ID of the file to use
- @param inContainer The container the file should be retrieved from
- @return A new KiiFile object
- */
-+ (KiiFile*) fileWithID:(NSString*)fileId inContainer:(NSString*)inContainer;
++ (KiiFile*) fileWithURI:(NSString*)uri;
 
 
 /** Updates the file data

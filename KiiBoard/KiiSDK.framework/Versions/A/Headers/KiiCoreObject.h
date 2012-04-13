@@ -39,6 +39,9 @@
 /** Contains the attributes (key/value) pairs associated with this object */
 @property (readonly) NSMutableDictionary *customInfo;
 
+/** Get a specifically formatted string referencing the object. The object must exist in the cloud (have a valid UUID). */
+@property (readonly) NSString *objectURI;
+
 // TODO: Add refresh methods
 
 /** Retrieves a readable class name for this object 
@@ -89,6 +92,23 @@
  @param error A KiiError object, set to nil, to test for errors
  */
 - (void) saveSynchronous:(KiiError**)error;
+
+
+/** Asynchronously updates the local object's data with the object data on the server
+ 
+ The object must exist on the server. Local data will be overwritten.
+ @param delegate The object to make any callback requests to
+ @param callback The callback method to be called when the request is completed
+ */
+- (void) refresh:(id)delegate withCallback:(SEL)callback;
+
+
+/** Synchronously updates the local object's data with the object data on the server
+ 
+ The object must exist on the server. Local data will be overwritten. This is a blocking method.
+ @param error A KiiError object, set to nil, to test for errors
+ */
+- (void) refreshSynchronous:(KiiError**)error;
 
 
 /** Asynchronously deletes an object from the server. 

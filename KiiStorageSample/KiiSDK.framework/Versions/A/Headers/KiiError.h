@@ -48,6 +48,9 @@
 /** Invalid email format. Email must be a valid address */
 + (KiiError*) invalidEmailFormat;
 
+/** Invalid username format. The username must be 4-64 alphanumeric characters - the first character must be a letter. */
++ (KiiError*) invalidUsername;
+
 /** Invalid user object. Please ensure the credentials were entered properly */
 + (KiiError*) invalidUserObject;
 
