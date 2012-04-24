@@ -75,7 +75,20 @@
  
  Authenticates a user with the server. The user object must have an associated email/password combination. This method is non-blocking.
  @param delegate The object to make any callback requests to
- @param callback The callback method to be called when the request is completed
+ @param callback The callback method to be called when the request is completed. The callback method should have a signature similar to:
+ 
+    - (void) authenticationComplete:(KiiUser*)user withError:(NSError*)error {
+ 
+        // the request was successful
+        if(error == nil) {
+            // do something with the user
+        }
+ 
+        else {
+            // there was a problem
+        }
+    }
+ 
  */
 - (void) authenticate:(id)delegate withCallback:(SEL)callback;
 
@@ -92,7 +105,20 @@
  
  Authenticates a user with the server. The user object must have an associated email/password combination. This method is non-blocking.
  @param delegate The object to make any callback requests to
- @param callback The callback method to be called when the request is completed
+ @param callback The callback method to be called when the request is completed. The callback method should have a signature similar to:
+ 
+    - (void) registrationComplete:(KiiUser*)user withError:(NSError*)error {
+ 
+        // the request was successful
+        if(error == nil) {
+            // do something with the user
+        }
+ 
+        else {
+            // there was a problem
+        }
+    }
+ 
  */
 - (void) performRegistration:(id)delegate withCallback:(SEL)callback;
 
@@ -111,7 +137,20 @@
  @param fromPassword The user's current password
  @param toPassword The user's desired password
  @param delegate The object to make any callback requests to
- @param callback The callback method to be called when the request is completed
+ @param callback The callback method to be called when the request is completed. The callback method should have a signature similar to:
+ 
+    - (void) passwordUpdateComplete:(KiiUser*)user withError:(NSError*)error {
+ 
+        // the request was successful
+        if(error == nil) {
+            // do something with the user
+        }
+ 
+        else {
+            // there was a problem
+        }
+    }
+ 
  */
 - (void) updatePassword:(NSString*)fromPassword to:(NSString*)toPassword withDelegate:(id)delegate andCallback:(SEL)callback;
 

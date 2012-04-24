@@ -86,7 +86,24 @@
  
  The working query will be executed against the server, returning a result set. If the result set is restricted by the limit, the hasNext method will return true and the next set of results can be retrieved by getNext:withCallback:
  @param delegate The object to make any callback requests to
- @param callback The callback method to be called when the query is completed
+ @param callback The callback method to be called when the request is completed. The callback method should have a signature similar to:
+ 
+    - (void) queryFinished:(KiiQuery*)query withResults:(NSArray*)results andError:(KiiError*)error {
+ 
+        // the request was successful
+        if(error == nil) {
+ 
+            // do something with the results
+            for(KiiObject *o in results) {
+                // use this object
+            }
+        }
+ 
+        else {
+            // there was a problem
+        }
+    }
+ 
  */
 - (void) execute:(id)delegate withCallback:(SEL)callback;
 
@@ -95,7 +112,24 @@
  
  The next set of results will be retrieved from the server, based on the current query and the last results obtained. Again, if the result set is restricted by the limit, the hasNext method will return true and the next set of results can be retrieved by calling this method again.
  @param delegate The object to make any callback requests to
- @param callback The callback method to be called when the query is completed
+ @param callback The callback method to be called when the request is completed. The callback method should have a signature similar to:
+ 
+    - (void) queryFinished:(KiiQuery*)query withResults:(NSArray*)results andError:(KiiError*)error {
+ 
+        // the request was successful
+        if(error == nil) {
+ 
+            // do something with the results
+            for(KiiObject *o in results) {
+                // use this object
+            }
+        }
+ 
+        else {
+            // there was a problem
+        }
+    }
+ 
  */
 - (void) getNext:(id)delegate withCallback:(SEL)callback;
 

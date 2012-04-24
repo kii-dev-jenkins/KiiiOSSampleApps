@@ -81,7 +81,20 @@
  
  If the object does not yet exist, it will be created. If the object already exists, the fields that have changed will be updated accordingly. This is a non-blocking method.
  @param delegate The object to make any callback requests to
- @param callback The callback method to be called when the request is completed
+ @param callback The callback method to be called when the request is completed. The callback method should have a signature similar to:
+ 
+    - (void) objectSaved:(KiiCoreObject*)object withError:(NSError*)error {
+ 
+        // the request was successful
+        if(error == nil) {
+            // do something with the object
+        }
+ 
+        else {
+            // there was a problem
+        }
+    }
+ 
  */
 - (void) save:(id)delegate withCallback:(SEL)callback;
 
@@ -98,7 +111,20 @@
  
  The object must exist on the server. Local data will be overwritten.
  @param delegate The object to make any callback requests to
- @param callback The callback method to be called when the request is completed
+ @param callback The callback method to be called when the request is completed. The callback method should have a signature similar to:
+ 
+    - (void) objectRefreshed:(KiiCoreObject*)object withError:(NSError*)error {
+ 
+        // the request was successful
+        if(error == nil) {
+            // do something with the object
+        }
+ 
+        else {
+            // there was a problem
+        }
+    }
+ 
  */
 - (void) refresh:(id)delegate withCallback:(SEL)callback;
 
@@ -115,7 +141,20 @@
  
  Delete an object from the server. This method is non-blocking.
  @param delegate The object to make any callback requests to
- @param callback The callback method to be called when the request is completed
+ @param callback The callback method to be called when the request is completed. The callback method should have a signature similar to:
+ 
+    - (void) objectDeleted:(KiiCoreObject*)object withError:(NSError*)error {
+ 
+        // the request was successful
+        if(error == nil) {
+            // do something with the object
+        }
+ 
+        else {
+            // there was a problem
+        }
+    }
+ 
  */
 - (void) delete:(id)delegate withCallback:(SEL)callback;
 

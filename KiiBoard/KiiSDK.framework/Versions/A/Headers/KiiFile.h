@@ -71,7 +71,24 @@
  This is a non-blocking method.
  @param inContainer The container to be queried
  @param delegate The object to make any callback requests to
- @param callback The callback method to be called when the request is completed
+ @param callback The callback method to be called when the request is completed. The callback method should have a signature similar to:
+        
+    - (void) gotFiles:(NSArray*)fileList withError:(NSError*)error {
+        
+        // the request was successful
+        if(error == nil) {
+ 
+            // iterate through the files retrieved
+            for(KiiFile *f in fileList) {
+                // do something 
+            }
+        }
+ 
+        else {
+            // there was a problem
+        }
+    }
+ 
  */
 + (void) listAllFiles:(NSString*)inContainer withDelegate:(id)delegate andCallback:(SEL)callback;
 
@@ -80,7 +97,24 @@
  
  The query is performed on the default container. This is a non-blocking method.
  @param delegate The object to make any callback requests to
- @param callback The callback method to be called when the request is completed
+ @param callback The callback method to be called when the request is completed. The callback method should have a signature similar to:
+ 
+    - (void) gotFiles:(NSArray*)fileList withError:(NSError*)error {
+ 
+        // the request was successful
+        if(error == nil) {
+ 
+            // iterate through the files retrieved
+            for(KiiFile *f in fileList) {
+                // do something 
+            }
+        }
+ 
+        else {
+            // there was a problem
+        }
+    }
+ 
  */
 + (void) listAllFiles:(id)delegate withCallback:(SEL)callback;
 
@@ -109,7 +143,24 @@
  This is a non-blocking method.
  @param inContainer The container to be queried
  @param delegate The object to make any callback requests to
- @param callback The callback method to be called when the request is completed
+ @param callback The callback method to be called when the request is completed. The callback method should have a signature similar to:
+ 
+    - (void) gotTrash:(NSArray*)fileList withError:(NSError*)error {
+ 
+        // the request was successful
+        if(error == nil) {
+ 
+            // iterate through the files retrieved
+            for(KiiFile *f in fileList) {
+                // do something 
+            }
+         }
+ 
+        else {
+            // there was a problem
+        }
+    }
+ 
  */
 + (void) listTrash:(NSString*)inContainer withDelegate:(id)delegate andCallback:(SEL)callback;
 
@@ -118,7 +169,24 @@
  
  The query is performed on the default container. This is a non-blocking method.
  @param delegate The object to make any callback requests to
- @param callback The callback method to be called when the request is completed
+ @param callback The callback method to be called when the request is completed. The callback method should have a signature similar to:
+ 
+    - (void) gotTrash:(NSArray*)fileList withError:(NSError*)error {
+ 
+        // the request was successful
+        if(error == nil) {
+ 
+            // iterate through the files retrieved
+            for(KiiFile *f in fileList) {
+                // do something 
+            }
+        }
+ 
+        else {
+            // there was a problem
+        }
+    }
+ 
  */
 + (void) listTrash:(id)delegate withCallback:(SEL)callback;
 
@@ -147,7 +215,19 @@
  This is a non-blocking method.
  @param inContainer The container for the trash to be emptied
  @param delegate The object to make any callback requests to
- @param callback The callback method to be called when the request is completed
+ @param callback The callback method to be called when the request is completed. The callback method should have a signature similar to:
+ 
+    - (void) trashEmptied:(NSError*)error {
+ 
+        if(error == nil) {
+            // the request was successful
+        }
+ 
+        else {
+            // there was a problem
+        }
+    }
+ 
  */
 + (void) emptyTrash:(NSString*)inContainer withDelegate:(id)delegate andCallback:(SEL)callback;
 
@@ -156,7 +236,19 @@
  
  This operation is performed on the default container. This is a non-blocking method.
  @param delegate The object to make any callback requests to
- @param callback The callback method to be called when the request is completed
+ @param callback The callback method to be called when the request is completed. The callback method should have a signature similar to:
+ 
+    - (void) trashEmptied:(NSError*)error {
+ 
+        if(error == nil) {
+            // the request was successful
+        }
+ 
+        else {
+            // there was a problem
+        }
+    }
+ 
  */
 + (void) emptyTrash:(id)delegate withCallback:(SEL)callback;
 
@@ -247,8 +339,28 @@
  
  Updates the file data, overwriting the contents on the server with the local contents. This is a non-blocking method.
  @param delegate The object to make any callback requests to
- @param progress The callback method to be called when progress is made on the request
- @param callback The callback method to be called when the request is completed
+ @param progress The callback method to be called when progress is made on the request. The progress callback should have a method signature similar to:
+
+    - (void) updateProgress:(KiiFile*)file withProgress:(NSNumber*)progress {   
+        // progress is sent as a float [0, 1]
+        float f = [progress floatValue];
+        // update the UI
+    }
+ 
+ @param callback The callback method to be called when the request is completed. The callback method should have a signature similar to:
+ 
+    - (void) fileUpdated:(KiiFile*)file withError:(NSError*)error {
+ 
+        // the request was successful
+        if(error == nil) {
+            // do something with the file object
+        }
+        
+        else {
+            // there was a problem
+        }
+    }
+ 
  */
 - (void) updateFile:(id)delegate withProgress:(SEL)progress andCallback:(SEL)callback;
 
@@ -265,7 +377,20 @@
  
  Updates the local KiiFile object with metadata from the server. This is a non-blocking method.
  @param delegate The object to make any callback requests to
- @param callback The callback method to be called when the request is completed
+ @param callback The callback method to be called when the request is completed. The callback method should have a signature similar to:
+ 
+    - (void) fileRefreshed:(KiiFile*)file withError:(NSError*)error {
+ 
+        // the request was successful
+        if(error == nil) {
+            // do something with the file object
+        }
+ 
+        else {
+            // there was a problem
+        }
+    }
+
  */
 - (void) getFileMetadata:(id)delegate withCallback:(SEL)callback; //
 
@@ -283,8 +408,28 @@
  Updates the local KiiFile object with the file body from the server. This is a non-blocking method.
  @param toPath The path of the file the body will be written to
  @param delegate The object to make any callback requests to
- @param progress The callback method to be called when progress is made on the request
- @param callback The callback method to be called when the request is completed
+ @param progress The callback method to be called when progress is made on the request. The progress callback should have a method signature similar to:
+ 
+    - (void) downloadProgress:(KiiFile*)file withProgress:(NSNumber*)progress {   
+        // progress is sent as a float [0, 1]
+        float f = [progress floatValue];
+        // update the UI
+    }
+ 
+ @param callback The callback method to be called when the request is completed. The callback method should have a signature similar to:
+ 
+    - (void) fileDownloaded:(KiiFile*)file toPath:(NSString*)toPath withError:(NSError*)error {
+ 
+        // the request was successful
+        if(error == nil) {
+            // do something with the new file path
+        }
+ 
+        else {
+            // there was a problem
+        }
+    }
+ 
  */
 - (void) getFileBody:(NSString*)toPath withDelegate:(id)delegate andProgress:(SEL)progress andCallback:(SEL)callback;
 
@@ -302,9 +447,22 @@
  
  If the file is not in the trash, an error is returned and the file remains as active. This is a non-blocking method.
  @param delegate The object to make any callback requests to
- @param callback The callback method to be called when the request is completed
+ @param callback The callback method to be called when the request is completed. The callback method should have a signature similar to:
+ 
+    - (void) fileShredded:(KiiFile*)file withError:(NSError*)error {
+ 
+        // the request was successful
+        if(error == nil) {
+            // mark the file as deleted on the UI
+        }
+ 
+        else {
+            // there was a problem
+        }
+    }
+
  */
-- (void) shredFile:(id)delegate withCallback:(SEL)callback;//
+- (void) shredFile:(id)delegate withCallback:(SEL)callback;
 
 
 /** Permanently deletes a trashed file.
@@ -319,9 +477,22 @@
  
  The file, once moved to trash, can be restored as long as the trash hasn't been emptied and the file hasn't been shredded since trashing the file. This is a non-blocking method.
  @param delegate The object to make any callback requests to
- @param callback The callback method to be called when the request is completed
+ @param callback The callback method to be called when the request is completed. The callback method should have a signature similar to:
+ 
+    - (void) fileTrashed:(KiiFile*)file withError:(NSError*)error {
+ 
+        // the request was successful
+        if(error == nil) {
+            // mark the file as moved to trash on the UI
+        }
+ 
+        else {
+            // there was a problem
+        }
+    }
+ 
  */
-- (void) moveToTrash:(id)delegate withCallback:(SEL)callback; //
+- (void) moveToTrash:(id)delegate withCallback:(SEL)callback;
 
 
 /** Moves the working file to the trash
@@ -336,7 +507,20 @@
  
  This is a non-blocking method.
  @param delegate The object to make any callback requests to
- @param callback The callback method to be called when the request is completed
+ @param callback The callback method to be called when the request is completed. The callback method should have a signature similar to:
+ 
+    - (void) fileRestored:(KiiFile*)file withError:(NSError*)error {
+ 
+        // the request was successful
+        if(error == nil) {
+            // mark the file as moved to trash on the UI
+        }
+ 
+        else {
+            // there was a problem
+        }
+    }
+ 
  */
 - (void) restoreFromTrash:(id)delegate withCallback:(SEL)callback; //
 
